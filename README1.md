@@ -140,6 +140,8 @@ The url to your presentation slides
 
 ### Contributors
 
-FirstName LastName - [`<github-username>`](https://github.com/person1-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person1-username)
+Eric Esteban - [`<github-username>`](https://github.com/4EPIC) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/eric-esteban-rubio-518a5b15b/)
 
-FirstName LastName - [`<github-username>`](https://github.com/person2-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person2-username)
+David Guardia - [`<github-username>`](https://github.com/DavidGV10)
+
+Pietro Lauria - [`<github-username>`](https://github.com/pilauria) - [`<linkedin-profile-link>`](htthttps://www.linkedin.com/in/pietro-lauria/)
