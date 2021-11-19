@@ -17,6 +17,7 @@
     "express-session": "^1",
     "hbs": "^4",
     "http-errors": "^1",
+    "kill-port": "^1.6.1",
     "mongoose": "^5",
     "morgan": "^1",
     "multer": "^1",
