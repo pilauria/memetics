@@ -15,7 +15,7 @@ const userSchema = new Schema({
 		type: String,
 		required: true
 	},
-	// favorites: [{ type: Schema.Types.ObjectId, ref: 'Room', default: [] }]
+	//favorites: [{ type: Schema.Types.ObjectId, ref: 'Meme', default: [] }]
 });
 
 const User = model('User', userSchema);
