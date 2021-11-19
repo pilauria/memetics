@@ -8,20 +8,22 @@ const User = require('../models/User.model')
 router.get('/', function(req, res, next) {
   res.render('login-form');
 });
-
-router.post('/signup-form', async (req, res)=>{
+router.get('/signup', (req, res)=>{
+  res.render('signup-form')
+})
+router.post('/signup', async (req, res)=>{
   const {username, email, password} = req.body
   // ++++++++++ comprobar que si no introducimos todos los campos no deja seguir y eliminar condicion siguiente
   // ++++++++++
   // ++++++++++
   if(!email || !password || !password) res.render('signup-form', username, email, {error: "All fields are required"})
-  const user = await User.findOne(email)
+  const user = await User.findOne({email})
   if(user) res.render('signup-form',{error: "User already exists"})
   const salt = bcrypt.genSaltSync(5)
   const hashPwd = bcrypt.hashSync(password, salt)
 
-  const newUser = await User.create(username, password, email)
-  res.render('index')
+  const newUser = await User.create({username, password: hashPwd, email})
+  res.redirect('/users/login')
 })
 
 router.route("/login")
@@ -30,7 +32,7 @@ router.route("/login")
 })
 .post( async (req, res)=>{
   const {email, password} = req.body
-  const userExists = await User.findOne(email)
+  const userExists = await User.findOne({email})
   if(!userExists) res.render('login-form', {error: "User not found"})
   const pwdIsCorrect = bcrypt.compareSync(password, userExists.password)
   if(pwdIsCorrect){
