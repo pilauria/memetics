@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
 const User = require('../models/User.model');
 
@@ -8,25 +9,53 @@ const User = require('../models/User.model');
 router.get('/', function (req, res, next) {
   res.render('login-form');
 });
-router.get('/signup', (req, res) => {
-  res.render('signup-form');
-});
-router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
-  // ++++++++++ comprobar que si no introducimos todos los campos no deja seguir y eliminar condicion siguiente
-  // ++++++++++
-  // ++++++++++
-  if (!email || !password || !password)
-    res.render('signup-form', username, email, {
-      error: 'All fields are required',
-    });
-  const user = await User.findOne({ email });
-  if (user) res.render('signup-form', { error: 'User already exists' });
-  const salt = bcrypt.genSaltSync(5);
-  const hashPwd = bcrypt.hashSync(password, salt);
 
-  const newUser = await User.create({ username, password: hashPwd, email });
-  res.redirect('/users/login');
+// GET route ==> to display the signup form to users
+router.get('/signup', (req, res, next) => {
+  res.render('signup-form');
+}); // POST route ==> to process form data
+router.post('/signup', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    // make sure users fill all mandatory fields:
+    if (!username || !email || !password) {
+      res.render('signup-form', {
+        message: 'All fields are required!',
+      });
+    }
+
+    const user = await User.findOne({ email });
+    if (user)
+      res.render('signup-form', { message: 'This user already exists!' });
+
+    // make sure passwords are strong:
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+      res.status(500).render('signup-form', {
+        errorMessage:
+          'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.',
+      });
+      return;
+    }
+
+    const salt = bcrypt.genSaltSync(5);
+    const hashPwd = bcrypt.hashSync(password, salt);
+    const newUser = await User.create({ username, password: hashPwd, email });
+    res.render('index', { message: 'User created!!', user: user });
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.status(500).render('signup-form', { errorMessage: error.message });
+      console.log(error.message);
+      // Make sure data in the database is clean - no duplicates
+    } else if (error.code === 11000) {
+      res.status(500).render('signup-form', {
+        errorMessage:
+          'Username and email need to be unique. Either username or email is already used.',
+      });
+    } else {
+      next(error);
+    }
+  }
 });
 
 router
@@ -35,13 +64,17 @@ router
     res.render('login-form');
   })
   .post(async (req, res) => {
-    const { email, password } = req.body;
-    const userExists = await User.findOne({ email });
-    if (!userExists) res.render('login-form', { error: 'User not found' });
-    const pwdIsCorrect = bcrypt.compareSync(password, userExists.password);
-    if (pwdIsCorrect) {
-      //+++++++++++++++++++ falta crear session
-      res.render('index');
+    try {
+      const { email, password } = req.body;
+      const userExists = await User.findOne({ email });
+      if (!userExists) res.render('login-form', { error: 'User not found' });
+      const pwdIsCorrect = bcrypt.compareSync(password, userExists.password);
+      if (pwdIsCorrect) {
+        //+++++++++++++++++++ falta crear session
+        res.render('index');
+      }
+    } catch (error) {
+      console.log(error);
     }
   });
 
