@@ -1,7 +1,7 @@
 body {
   padding: 0%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: utl("/images/photo-1563223566-f731efbdbab0.jpeg");
+  background-image: url("/images/photo-1563223566-f731efbdbab0.jpeg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,8 +31,8 @@ nav ul li {
 
 /* Create a style for the first level items */
 nav > ul > li > a {
-  color: #aaa;
-  background-color: rgb(245, 245, 24);
+  color: rgb(88, 87, 87);
+  background-color: rgb(238, 224, 97);
   display: block;
   line-height: 2em;
   padding: 0.5em 0.5em;
@@ -45,9 +45,42 @@ nav > ul > li > a {
   align-items: center;
 }
 
+.logo-index h3 {
+  color: aliceblue;
+  text-shadow: 2px 2px 4px #000000;
+}
+
 /* horizontal scrolling*/
 .glide__track {
-  height: 55%;
+  height: 30%;
+}
+
+.glide__track li {
+  height: 200;
+  width: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.glide__track img {
+  position: absolute;
+  object-fit: cover;
+}
+
+/* Start Tutorial */
+.tutorial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tutorial h2 {
+  color: aliceblue;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.tutorial p {
+  color: aliceblue;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 /* FOOTER */
