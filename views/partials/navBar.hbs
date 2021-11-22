@@ -1,3 +1,4 @@
+
 <nav class="nav-wrapper">
   {{! <a href="#" class="brand-logo right">MEMETICS</a> }}
   <ul class="nav-links">
@@ -11,7 +12,18 @@
   
   <ul id="nav-mobile" class="left hide-on-med-and-down">
     {{! pendiente condicional }}
-    <li><a href="/users/login" title="Login">Log In/Log Out</a></li>
-    <li><a class="nav-profile" href="/users/profile" title="Profile">N</a></li>
+     <li>
+      <a href='/users/signup'>Signup</a>
+    </li>
+    <li>
+      <a href="/users/login" title="Login">Log In</a>
+      </li>
+    <li>
+      <a class="nav-profile" href="/users/profile" title="Profile">N</a>
+      </li>
+     <form id='logout-form' action='/logout' method='POST'>
+      <button>Logout</button>
+    </form>
+
   </ul>
 </nav>
