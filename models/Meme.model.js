@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+const User = require("../models/User.model")
 
 const memeSchema = new Schema({
 	name: {

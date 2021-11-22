@@ -38,7 +38,8 @@ router
     }
   })
   .post(async (req, res) => {
-    const userId = req.session.currentUser._id
+    const userId = req.session.currentUser._id  
+    console.log("session", userId)
     const idMeme = req.params.id;
     const getMemes = await MemeApi.getAll();
     const allMemes = getMemes.data.data.memes;
