@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const isLoggedIn = require('..middleware/isLoggedIn');
+const isNotLoggedIn = require('../middleware/isNotLoggedIn');
 
 const User = require('../models/User.model');
 
@@ -98,7 +100,7 @@ router
     }
   });
 
-router.get('/user-profile', (req, res) => {
+router.get('/userProfile', (req, res) => {
   res.render('user-profile', {
     userInSession: req.session.currentUser,
   });
@@ -109,12 +111,5 @@ router.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
-
-//(or)
-// router.get('/logout', (req, res, next) => {
-//   req.session.destroy(err => {
-//     if (err) res.redirect('/');
-//     else res.redirect('/users/login');
-//   });
 
 module.exports = router;
