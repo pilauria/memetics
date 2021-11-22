@@ -1,0 +1,10 @@
+<img src='{{one.url}}' />
+<form action='/memes/update/{{one.id}}' method='POST'>
+  
+    {{#each numberOfBoxes}} 
+        <label for='{{this}}'>Insert {{this}}</label>
+        <input type='text' name='{{this}}' />
+    {{/each}}
+
+    <button type='submit'>Update Meme!</button>
+</form>
