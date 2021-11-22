@@ -1,24 +1,30 @@
-<h2>Login</h2>
+<div>
+  <h2>Login</h2>
 
-<form action='/users/login' method='post'>
+  <form action='/users/login' method='post'>
 
-  <label for='username'>Username:</label>
-  <input required type='text' name='email' placeholder='type your username' />
+    <label for='username'>Username:</label>
+    <input required type='text' name='email' placeholder='type your username' />
 
-  <label for='email'>Email:</label>
-  <input required type='email' name='email' placeholder='type your email' />
+    <label for='email'>Email:</label>
+    <input required type='email' name='email' placeholder='type your email' />
 
-  <label for='password'>Password:</label>
-  <input
-    required
-    type='password'
-    name='password'
-    placeholder='hope you remember it...'
-  />
+    <label for='password'>Password:</label>
+    <input
+      required
+      type='password'
+      name='password'
+      placeholder='password here'
+    />
 
-  <button type='submit'>Login</button>
-  <div>
-    <a href='signup' class='btn marginTop'>Sign up instead</a>
-  </div>
+    <button type='submit'>Login</button>
+    <div>
+      <a href='signup' class='btn marginTop'>Sign up instead</a>
+    </div>
 
-</form>
+    {{#if errorMessage}}
+      <p class='error'>{{errorMessage}}</p>
+    {{/if}}
+
+  </form>
+</div>

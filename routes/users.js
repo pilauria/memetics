@@ -10,6 +10,7 @@ router.get('/', function (req, res, next) {
   res.render('login-form');
 });
 
+// ----- SIGN UP ------- //
 // GET route ==> to display the signup form to users
 router.get('/signup', (req, res, next) => {
   res.render('signup-form');
@@ -58,24 +59,61 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// ------ LOGIN ------ //
 router
   .route('/login')
   .get((req, res) => {
     res.render('login-form');
   })
-  .post(async (req, res) => {
+  .post(async (req, res, next) => {
+    console.log('SESSION =====> ', req.session);
     try {
       const { email, password } = req.body;
-      const userExists = await User.findOne({ email });
-      if (!userExists) res.render('login-form', { error: 'User not found' });
-      const pwdIsCorrect = bcrypt.compareSync(password, userExists.password);
-      if (pwdIsCorrect) {
-        //+++++++++++++++++++ falta crear session
-        res.render('index');
+      if (email === '' || password === '') {
+        res.render('login-form', {
+          errorMessage: 'Please enter both, email and password to login.',
+        });
+        return;
+      }
+
+      const userExists = await User.findOne({ email }); //// <== check if there's user with the provided email
+      if (!userExists) {
+        res.render('login-form', {
+          errorMessage: 'Email is not registered. Try with other email.',
+        });
+        return;
+        // if there's a user, compare provided password
+        // with the hashed password saved in the database
+      } else if (bcrypt.compareSync(password, userExists.password)) {
+        // if the two passwords match, render the user-profile.hbs and
+        //                   pass the user object to this view
+        //                                 |
+        //                                 V
+        // res.render('user-profile', { userExists });
+        //******* SAVE THE USER IN THE SESSION ********//
+        req.session.currentUser = userExists;
+        res.redirect('user-profile');
+      } else {
+        // if the two passwords DON'T match, render the login form again
+        // and send the error message to the user
+        res.render('login-form', { errorMessage: 'Incorrect password.' });
       }
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   });
+
+router.get('/user-profile', (req, res) => {
+  res.render('user-profile', {
+    userInSession: req.session.currentUser,
+  });
+});
+
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
 
 module.exports = router;
