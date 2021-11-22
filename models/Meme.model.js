@@ -2,11 +2,6 @@ const { Schema, model } = require('mongoose');
 
 
 const memeSchema = new Schema({
-	id: {
-		type: Number,
-		required: true,
-		unique: true
-	},
 	name: {
 		type: String,
 		required: true
@@ -26,7 +21,11 @@ const memeSchema = new Schema({
     box_count: {
         type: Number,
         required: true
-    }
+    },
+	text: {
+		type: [String],
+	},
+	owner: {type: Schema.Types.ObjectId, ref: "User"}
 	//favorites: [{ type: Schema.Types.ObjectId, ref: 'Meme', default: [] }]
 });
 
