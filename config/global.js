@@ -47,7 +47,8 @@ module.exports = app => {
         maxAge: 24 * 60 * 60 * 1000,
       },
       store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI,
+        mongoUrl:
+          'mongodb+srv://pilauria:CtbSHUys2yPQlyxW@cluster0.q3aua.mongodb.net/project2-team',
       }),
     })
   );

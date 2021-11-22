@@ -24,11 +24,9 @@ router.post('/signup', async (req, res) => {
         message: 'All fields are required!',
       });
     }
-
-    const user = await User.findOne({ email });
-    if (user)
-      res.render('signup-form', { message: 'This user already exists!' });
-
+    // const user = await User.findOne({ email });
+    // if (user)
+    //   res.render('signup-form', { message: 'This user already exists!' });
     // make sure passwords are strong:
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
@@ -85,11 +83,6 @@ router
         // if there's a user, compare provided password
         // with the hashed password saved in the database
       } else if (bcrypt.compareSync(password, userExists.password)) {
-        // if the two passwords match, render the user-profile.hbs and
-        //                   pass the user object to this view
-        //                                 |
-        //                                 V
-        // res.render('user-profile', { userExists });
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = userExists;
         res.redirect('user-profile');
@@ -109,11 +102,18 @@ router.get('/user-profile', (req, res) => {
   });
 });
 
-router.post('/logout', (req, res, next) => {
+router.post('/', (req, res, next) => {
   req.session.destroy(err => {
     if (err) next(err);
     res.redirect('/');
   });
 });
+
+//(or)
+// router.get('/logout', (req, res, next) => {
+//   req.session.destroy(err => {
+//     if (err) res.redirect('/');
+//     else res.redirect('/users/login');
+//   });
 
 module.exports = router;
