@@ -14,8 +14,10 @@ router.get('/', function (req, res, next) {
 // GET route ==> to display the signup form to users
 router.get('/signup', (req, res, next) => {
   res.render('signup-form');
-}); // POST route ==> to process form data
-router.post('/signup', async (req, res) => {
+});
+
+// POST route ==> to process form data
+router.post('/signup', async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     // make sure users fill all mandatory fields:
@@ -40,7 +42,7 @@ router.post('/signup', async (req, res) => {
     const salt = bcrypt.genSaltSync(5);
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
-    res.render('index', { message: 'User created!!', user: user });
+    res.render('index', { message: 'User created!!', user: username });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(500).render('signup-form', { errorMessage: error.message });
@@ -102,11 +104,10 @@ router.get('/user-profile', (req, res) => {
   });
 });
 
-router.post('/', (req, res, next) => {
-  req.session.destroy(err => {
-    if (err) next(err);
-    res.redirect('/');
-  });
+router.post('/logout', (req, res) => {
+  console.log('108:', req);
+  req.session.destroy();
+  res.redirect('/');
 });
 
 //(or)

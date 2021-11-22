@@ -1,6 +1,6 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("/images/photo-1563223566-f731efbdbab0.jpeg");
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  background-image: url('/images/photo-1563223566-f731efbdbab0.jpeg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -17,6 +17,7 @@ a {
 /* Main */
 main {
   padding: 90px 10px 45px 10px;
+  color: white;
 }
 /* NavBar */
 nav {
