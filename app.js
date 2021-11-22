@@ -11,7 +11,7 @@ var app = express();
 
 // Functional curling style of loading configuration
 require('./config/db');
-require('./config/global')(app);
+require('./config/global')(app); // // use session here:
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
