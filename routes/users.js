@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const isLoggedIn = require('..middleware/isLoggedIn');
-const isNotLoggedIn = require('../middleware/isNotLoggedIn');
+
+const isLoggedIn = require('../middleware/isLoggedIn.js');
+const isNotLoggedIn = require('../middleware/isNotLoggedIn.js');
 
 const User = require('../models/User.model');
 
@@ -14,12 +15,12 @@ router.get('/', function (req, res, next) {
 
 // ----- SIGN UP ------- //
 // GET route ==> to display the signup form to users
-router.get('/signup', (req, res, next) => {
+router.get('/signup', isNotLoggedIn, (req, res) => {
   res.render('signup-form');
 });
 
 // POST route ==> to process form data
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', isNotLoggedIn, async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     // make sure users fill all mandatory fields:
@@ -28,9 +29,7 @@ router.post('/signup', async (req, res, next) => {
         message: 'All fields are required!',
       });
     }
-    // const user = await User.findOne({ email });
-    // if (user)
-    //   res.render('signup-form', { message: 'This user already exists!' });
+
     // make sure passwords are strong:
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
@@ -63,7 +62,7 @@ router.post('/signup', async (req, res, next) => {
 
 // ------ LOGIN ------ //
 router
-  .route('/login')
+  .route('/login', isNotLoggedIn)
   .get((req, res) => {
     res.render('login-form');
   })
@@ -100,13 +99,15 @@ router
     }
   });
 
-router.get('/userProfile', (req, res) => {
+router.get('/user-profile', isLoggedIn, (req, res) => {
+  const userId = req.session.currentUser._id;
+  console.log(userId);
   res.render('user-profile', {
     userInSession: req.session.currentUser,
   });
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', isLoggedIn, (req, res) => {
   console.log('108:', req);
   req.session.destroy();
   res.redirect('/');
