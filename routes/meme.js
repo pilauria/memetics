@@ -53,20 +53,19 @@ router
     const oneMeme = allMemes[index];
     // Determinar número de boxes
     const template_id = idMeme;
-    // ++++++++++++++++++++++++ Pietro, incluir en .env usuario y contraseña y cambiar aquí
-    const username = 'bering20';
-    const password = 'ironhack';
+    const API_USER = process.env.API_USER;
+    const API_PASSWORD = process.env.API_PASSWORD;
     let params = {};
     if (oneMeme.box_count < 3) {
       const { text0, text1 } = req.body;
-      params = { template_id, username, password, text0, text1 };
+      params = { template_id, API_USER, API_PASSWORD, text0, text1 };
       totalText.push(text0);
       totalText.push(text1);
     } else {
       params = {
         template_id: template_id,
-        username: username,
-        password: password,
+        username: API_USER,
+        password: API_PASSWORD,
       };
 
       for (let i = 0; i < oneMeme.box_count; i++) {
