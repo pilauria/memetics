@@ -8,6 +8,7 @@ const Api = require('../apis/api');
 router.get('/', (req, res) => {
   const isAuthorized = req.session.currentUser ? true : false;
   let userName = req.session.currentUser.username.charAt(0).toUpperCase();
+  console.log(userName);
   User.find().then(users =>
     res.render('index', { users, isAuthorized, userName })
   );
@@ -21,4 +22,3 @@ router.get('/api', (req, res) => {
 });
 
 module.exports = router;
-+
