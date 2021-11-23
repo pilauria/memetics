@@ -1,15 +1,17 @@
 {{! views/users/user-profile.hbs }}
 
-{{#if userInSession}}
-  <h2>Welcome, {{userInSession.username}}!</h2>
-  <p>This is your profile page!</p>
-  {{#each findMemes}}
-    <a href="/memes/update/{{_id}}"><img src="{{url}}" /></a>
-  {{/each}}
-  <div>
-    <a href="user-profile">Reload the page</a>
-  </div>
+<div class="profile">
+  {{#if userInSession}}
+    <h2>Welcome, {{userInSession.username}}!</h2>
+    <p>This is your profile page!</p>
+    {{#each findMemes}}
+      <a href="/memes/update/{{_id}}"><img src="{{url}}" /></a>
+    {{/each}}
+    <div>
+      <a href="user-profile">Reload the page</a>
+    </div>
 
-{{else}}
-  <p>Still no logged in user, sorry!</p>
-{{/if}}
+  {{else}}
+    <p>Still no logged in user, sorry!</p>
+  {{/if}}
+</div>
