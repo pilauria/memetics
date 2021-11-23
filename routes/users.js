@@ -103,9 +103,9 @@ router
 
 router.get('/user-profile', isLoggedIn, async (req, res) => {
   const userId = req.session.currentUser._id;
-  const userName = req.session.currentUser.username;
+  let userName = req.session.currentUser.username.charAt(0).toUpperCase();
   const findMemes = await Meme.find({ owner: userId }).populate('owner');
-  console.log(userName[0]);
+
   res.render('user-profile', {
     userInSession: req.session.currentUser,
     findMemes,
