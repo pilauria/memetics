@@ -14,10 +14,10 @@ router.get('/', async (req, res, next) => {
 });
 
 router
-  .route('/create/:id', isLoggedIn)
-  .get( async (req, res) => {
-    
+  .route('/create/:id')
+  .get(isLoggedIn, async (req, res) => {
     try {
+      console.log('session current user', req.session.currentUser);
       const idMeme = req.params.id;
       const getMemes = await MemeApi.getAll();
       const allMemes = getMemes.data.data.memes;
@@ -29,17 +29,21 @@ router
       }
       const one = allMemes[index];
 
-      const numberOfBoxes = []
-      for(let i=1; i<=one.box_count; i++) numberOfBoxes.push(`Box ${i}`)
-      if(one.box_count < 3) res.render('meme-create', one);
-      else res.render('meme-create+2', {one, numberOfBoxes})
+
+      const numberOfBoxes = [];
+      for (let i = 1; i <= one.box_count; i++) numberOfBoxes.push(`Box ${i}`);
+      if (one.box_count < 3)
+        res.render('meme-create', { one, isAutorized: true });
+      else
+        res.render('meme-create+2', { one, numberOfBoxes, isAutorized: true });
+
     } catch (err) {
       console.log(err);
     }
   })
-  .post(async (req, res) => {
-    const userId = req.session.currentUser._id  
-    console.log("session", userId)
+  .post(isLoggedIn, async (req, res) => {
+    const userId = req.session.currentUser._id;
+    console.log('session', userId);
     const idMeme = req.params.id;
     const getMemes = await MemeApi.getAll();
     const allMemes = getMemes.data.data.memes;
@@ -140,9 +144,11 @@ router
   .then( async el => {
         if (el.data.success) {
           const img = el.data.data.url;
+
           console.log(idMeme)
           const newMeme = await Meme.findOneAndUpdate({_id:idMeme}, { url: img, text: totalText }, {upsert: true});
-          res.render('meme-result', { img });
+            res.render('meme-result', { img, isAutorized: true });
+
         }
         else{}
       })
