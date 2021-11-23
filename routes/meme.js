@@ -5,7 +5,7 @@ const Meme = require('../models/Meme.model');
 const MemeApi = require('../apis/api');
 const { on } = require('npmlog');
 const { config } = require('dotenv');
-const isLoggedIn = require('../middleware/isLoggedIn');
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 router.get('/', async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
@@ -29,12 +29,14 @@ router
       }
       const one = allMemes[index];
 
+
       const numberOfBoxes = [];
       for (let i = 1; i <= one.box_count; i++) numberOfBoxes.push(`Box ${i}`);
       if (one.box_count < 3)
         res.render('meme-create', { one, isAutorized: true });
       else
         res.render('meme-create+2', { one, numberOfBoxes, isAutorized: true });
+
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +47,7 @@ router
     const idMeme = req.params.id;
     const getMemes = await MemeApi.getAll();
     const allMemes = getMemes.data.data.memes;
-    const totalText = [];
+    const totalText = []
     // Refactor using .indexOf() or .find()
     let index = null;
     for (let el of allMemes) {
@@ -56,92 +58,112 @@ router
     const oneMeme = allMemes[index];
     // Determinar número de boxes
     const template_id = idMeme;
-    const API_USER = process.env.API_USER;
-    const API_PASSWORD = process.env.API_PASSWORD;
-    let params = {};
-    if (oneMeme.box_count < 3) {
+    // ++++++++++++++++++++++++ Pietro, incluir en .env usuario y contraseña y cambiar aquí
+    const API_USER = "bering20"
+    const API_PASSWORD = "ironhack"
+    let params = {}
+    if(oneMeme.box_count <3){
       const { text0, text1 } = req.body;
-      params = { template_id, API_USER, API_PASSWORD, text0, text1 };
-      totalText.push(text0);
-      totalText.push(text1);
-    } else {
-      params = {
-        template_id: template_id,
-        username: API_USER,
-        password: API_PASSWORD,
+      params = { template_id, username: API_USER, password: API_PASSWORD, text0, text1 };
+      totalText.push(text0)
+      totalText.push(text1)
+    }else{
+      params = { 
+        "template_id": template_id, 
+        "username": API_USER, 
+        "password": API_PASSWORD
       };
-
-      for (let i = 0; i < oneMeme.box_count; i++) {
+    
+      for(let i=0; i<oneMeme.box_count;i++){
         let oneText = req.body.text[i];
         params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in teh url
-        totalText.push(oneText);
+        totalText.push(oneText)
       }
     }
 
     MemeApi.createMeme(params)
-      .then(async el => {
-        if (el.data.success) {
-          const img = el.data.data.url;
-          console.log(
-            oneMeme.name,
-            img,
-            oneMeme.width,
-            oneMeme.height,
-            oneMeme.box_count,
-            totalText
-          );
-          const newMeme = await Meme.create({
-            name: oneMeme.name,
-            url: img,
-            width: oneMeme.width,
-            height: oneMeme.height,
-            box_count: oneMeme.box_count,
-            text: totalText,
-            owner: userId,
-          });
-          res.render('meme-result', { img, isAutorized: true });
-        }
-        //else{()}
+      .then(async (el) => {
+        if(el.data.success){
+        const img = el.data.data.url
+        const newMeme = await Meme.create({name: oneMeme.name, url: img, width: oneMeme.width, height: oneMeme.height, box_count : oneMeme.box_count, text: totalText, owner: userId, template: oneMeme.id })
+        res.render('meme-result', {img})
+      }
+      //else{()}
       })
-      .catch(err => console.log(err));
+      .catch(err=>console.log(err));
   });
 
-//router.route('/update/:id')
-//.get( async (req, res)=>{
-//  try{
-//    const idMeme = req.params.id;
-//    let index = null;
-//    for (let el of allMemes) {
-//      if (el.id === idMeme) {
-//        index = allMemes.indexOf(el);
-//      }
-//    }
-//    const one = allMemes[index];
-//    const numberOfBoxes = []
-//    for(let i=1; i<=one.box_count; i++) numberOfBoxes.push(`text${i}`)
-//    if(one.box_count < 3) res.render('meme-update', one);
-//    else res.render('meme-update+2', {one, numberOfBoxes})
-//
-//  }
-//  catch(err){
-//    console.log(err)
-//  }
-//})
-//.post((req, res) => {
-//  const id = req.params.id;
-//  const { text0, text1 } = req.body;
-//  const template_id = id;
-//  // ++++++++++++++++++++++++ Pietro, incluir en .env usuario y contraseña y cambiar aquí
-//  const username = 'bering20';
-//  const password = 'ironhack';
-//  const params = { template_id, username, password, text0, text1 };
-//  // ++++++++++++++ Una vez tengamos la base de datos operando, recuperar los datos actuales de texto y pasarlos para mostrarlos en pantalla como default value
-//  MemeApi.createMeme(params)
-//    .then(el => {
-//      const img = el.data.data.url
-//      res.render('meme-result', {img})
-//    })
-//    .catch(error => console.log(error));
-//});
+  router
+  .route('/update/:id', isLoggedIn)
+  .get(async (req, res) => {
+    try {
+      const idMeme = req.params.id;
+      const getMemes = await MemeApi.getAll();
+      const allMemes = getMemes.data.data.memes;
+      const memeToBeUpdated = await Meme.findById(idMeme)
+      const numberOfBoxes = [];
+      for (let i = 1; i <= memeToBeUpdated.box_count; i++) numberOfBoxes.push(`Box ${i}`);
+      if (memeToBeUpdated.box_count < 3) res.render('meme-update', memeToBeUpdated);
+      else res.render('meme-update+2', {memeToBeUpdated, numberOfBoxes})
+    } catch (err) {
+      console.log(err); 
+    }
+  })
+  .post(async (req, res) => {
+    try{
+      //const userId = req.session.currentUser._id;
+    //console.log('session', userId);
+    const idMeme = req.params.id;
+    const memeToBeUpdated = await Meme.findById(idMeme);
+    console.log(memeToBeUpdated)
+    const totalText = []
+    const numOfBoxes = memeToBeUpdated.box_count
+    const API_USER = process.env.API_USER;
+    const API_PASSWORD = process.env.API_PASSWORD;
+    const template_id = memeToBeUpdated.template
 
+    if(numOfBoxes <3 ) {
+        const { text0, text1 } = req.body;
+        params = { template_id: template_id, username: "bering20", password: "ironhack", text0: text0, text1: text1 };
+        totalText.push(text0);
+        totalText.push(text1);
+    } else {  
+        params = {
+        template_id: template_id,
+        username: "bering20",
+        password: "ironhack",
+      }
+    
+    for (let i = 0; i < memeToBeUpdated.box_count; i++) {
+        let oneText = req.body.text[i];
+        params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in the url
+        totalText.push(oneText);
+    }
+  }
+  MemeApi.createMeme(params)
+  .then( async el => {
+        if (el.data.success) {
+          const img = el.data.data.url;
+
+          console.log(idMeme)
+          const newMeme = await Meme.findOneAndUpdate({_id:idMeme}, { url: img, text: totalText }, {upsert: true});
+            res.render('meme-result', { img, isAutorized: true });
+
+        }
+        else{}
+      })
+      .catch(err => console.log(err));
+    }catch(err){
+      console.log(err)
+    }
+    
+
+});
+
+router.get('/delete/:id', async (req, res)=>{
+  const deleteMeme = await Meme.findByIdAndDelete({_id: req.params.id})
+  res.redirect('/users/user-profile')
+})
+
+  
 module.exports = router;
