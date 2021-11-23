@@ -109,7 +109,7 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
   res.render('user-profile', {
     userInSession: req.session.currentUser,
     findMemes,
-    isAutorized: true,
+    isAuthorized: true,
     userName,
   });
 });

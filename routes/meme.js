@@ -7,17 +7,17 @@ const { on } = require('npmlog');
 const { config } = require('dotenv');
 const isLoggedIn = require('../middleware/isLoggedIn')
 
-router.get('/', isLoggedIn, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
-  const isAutorized = req.session.currentUser ? true : false;
-  res.render('meme-list', { allMemes, isAutorized });
+  const isAuthorized = req.session.currentUser ? true : false;
+  res.render('meme-list', { allMemes, isAuthorized });
 });
 
 router
 
-  .route('/create/:id', isLoggedIn)
-  .get( async (req, res) => {
+  .route('/create/:id')
+  .get(isLoggedIn, async (req, res) => {
     
    try {
       console.log('session current user', req.session.currentUser);
@@ -34,8 +34,10 @@ router
 
      const numberOfBoxes = []
       for(let i=1; i<=one.box_count; i++) numberOfBoxes.push(`Box ${i}`)
-      if(one.box_count < 3) res.render('meme-create', one);
-      else res.render('meme-create+2', {one, numberOfBoxes})
+      let isAuthorized = true
+      console.log("sdadadaddasdsdsdadas",isAuthorized)
+      if(one.box_count < 3) res.render('meme-create', {one, isAuthorized});
+      else res.render('meme-create+2', {one, numberOfBoxes, isAuthorized})
 
     } catch (err) {
       console.log(err);
@@ -88,7 +90,7 @@ router
         if(el.data.success){
         const img = el.data.data.url
         const newMeme = await Meme.create({name: oneMeme.name, url: img, width: oneMeme.width, height: oneMeme.height, box_count : oneMeme.box_count, text: totalText, owner: userId, template: oneMeme.id })
-        res.render('meme-result', {img})
+        res.render('meme-result', {img, isAuthorized: true})
       }
       //else{()}
       })
@@ -105,8 +107,9 @@ router
       const memeToBeUpdated = await Meme.findById(idMeme)
       const numberOfBoxes = [];
       for (let i = 1; i <= memeToBeUpdated.box_count; i++) numberOfBoxes.push(`Box ${i}`);
-      if (memeToBeUpdated.box_count < 3) res.render('meme-update', memeToBeUpdated);
-      else res.render('meme-update+2', {memeToBeUpdated, numberOfBoxes})
+      let isAuthorized = true
+      if (memeToBeUpdated.box_count < 3) res.render('meme-update', {memeToBeUpdated, isAuthorized});
+      else res.render('meme-update+2', {memeToBeUpdated, numberOfBoxes, isAuthorized})
     } catch (err) {
       console.log(err); 
     }
@@ -117,7 +120,6 @@ router
     //console.log('session', userId);
     const idMeme = req.params.id;
     const memeToBeUpdated = await Meme.findById(idMeme);
-    console.log(memeToBeUpdated)
     const totalText = []
     const numOfBoxes = memeToBeUpdated.box_count
     const API_USER = process.env.API_USER;
