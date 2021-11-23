@@ -25,6 +25,9 @@ const memeSchema = new Schema({
 	text: {
 		type: [String],
 	},
+	template: {
+		type: String
+	},
 	owner: {type: Schema.Types.ObjectId, ref: "User"}
 });
 

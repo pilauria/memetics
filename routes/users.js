@@ -89,6 +89,7 @@ router
       } else if (bcrypt.compareSync(password, userExists.password)) {
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = userExists;
+        //res.redirect('/users/user-profile');
         res.redirect('user-profile');
       } else {
         // if the two passwords DON'T match, render the login form again
@@ -102,11 +103,14 @@ router
 
 router.get('/user-profile', isLoggedIn, async (req, res) => {
   const userId = req.session.currentUser._id;
-  console.log(userId);
+  const userName = req.session.currentUser.username;
   const findMemes = await Meme.find({ owner: userId }).populate('owner');
+  console.log(userName[0]);
   res.render('user-profile', {
     userInSession: req.session.currentUser,
     findMemes,
+    isAutorized: true,
+    userName,
   });
 });
 
