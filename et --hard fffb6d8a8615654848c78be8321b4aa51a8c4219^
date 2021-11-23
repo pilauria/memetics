@@ -1,0 +1,375 @@
+[33mcommit fffb6d8a8615654848c78be8321b4aa51a8c4219[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/conditional-navbar[m[33m, [m[1;32mconditional-navbar[m[33m)[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Tue Nov 23 14:33:43 2021 +0100
+
+    conditional-navbar
+
+[33mcommit f63dd793772bbd06eb60d69d307990367aeab1d7[m
+Merge: ad7ae29 08e3bf8
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Tue Nov 23 10:33:36 2021 +0100
+
+    Merge branch 'main' of https://github.com/pilauria/project2-team
+
+[33mcommit ad7ae297e66ac276ee6565c863467c8dc0b8e76a[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Tue Nov 23 10:31:43 2021 +0100
+
+    before conditional navbar
+
+[33mcommit 08e3bf84b9b72feccac193b0126e53e64d99b6fb[m
+Merge: b772fcf 531ab0f
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Tue Nov 23 09:40:01 2021 +0100
+
+    m
+
+[33mcommit b772fcf357461667e0b9dc9340ba4920dfafbc06[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Tue Nov 23 09:37:38 2021 +0100
+
+    m
+
+[33mcommit 531ab0fc52130a6965f82cc8e3fa11f3d4f4838f[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Tue Nov 23 07:42:15 2021 +0100
+
+    start links
+
+[33mcommit 68ad3401e7d54352359d8ae446e5e7573ca5a0de[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Tue Nov 23 06:15:17 2021 +0100
+
+    remove console logs
+
+[33mcommit 94b80c401bd11440cfd98e6bdf448e13c6dd728d[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Mon Nov 22 18:11:50 2021 +0100
+
+    user profile enlazando con base de datos usuario
+
+[33mcommit 77ac3a0866483d8357588dca226ab59a8a8f5e9b[m
+Merge: 8280bc3 9c72a60
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Mon Nov 22 16:44:32 2021 +0100
+
+    Merge pull request #11 from pilauria/routes
+    
+    routes meme
+
+[33mcommit 9c72a60d81464d6c8cca18184421ef727e46ce24[m
+Merge: bf48e2c 8280bc3
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Mon Nov 22 16:44:25 2021 +0100
+
+    Merge branch 'main' into routes
+
+[33mcommit 8280bc3035a11906b6a4c92ce345c826ba46eca9[m
+Merge: 2146d28 d1be1d2
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Mon Nov 22 16:41:56 2021 +0100
+
+    Merge pull request #10 from pilauria/autorization
+    
+    Autorization
+
+[33mcommit bf48e2c4e68ab032650679aa3dc62e0f9175cb7f[m[33m ([m[1;31morigin/routes[m[33m)[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Mon Nov 22 16:41:25 2021 +0100
+
+    routes meme
+
+[33mcommit d1be1d2c7c009ac70f49ec3681cd8bb3d3070a66[m[33m ([m[1;31morigin/autorization[m[33m, [m[1;32mautorization[m[33m)[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 16:41:06 2021 +0100
+
+    third
+
+[33mcommit cd88763656bccf5dba8e21024573556f9000bc71[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 15:42:29 2021 +0100
+
+    second
+
+[33mcommit 2146d2869728c2441ce65f9cafde5dbf593479a1[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 11:40:05 2021 +0100
+
+    logout
+
+[33mcommit ca64844209fe8afdb3f4c6aadfce22aa045bde64[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 10:43:26 2021 +0100
+
+    text changes on index hbs
+
+[33mcommit 59684e46b4e86ec17d027b724137926712d5b7b3[m
+Merge: ccd8e43 6e759ff
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Mon Nov 22 10:35:25 2021 +0100
+
+    Merge pull request #8 from pilauria/CssIndex
+    
+    visual
+
+[33mcommit 6e759ff39f2e1053ee881bf6f2e2661711891b51[m[33m ([m[1;31morigin/CssIndex[m[33m, [m[1;32mCssIndex[m[33m)[m
+Merge: aab27b0 ccd8e43
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 10:33:48 2021 +0100
+
+    merge edit-delete
+
+[33mcommit ccd8e432e8c166631bea88a6930c51ddccc4c362[m
+Merge: 5762ebb 9580f60
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 10:01:15 2021 +0100
+
+    main
+
+[33mcommit 9580f60bccee9a7c7182f73f9ff8e4db85482585[m[33m ([m[1;31morigin/edit-delete[m[33m, [m[1;32medit-delete[m[33m)[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 09:51:00 2021 +0100
+
+    login-signup-logout bis
+
+[33mcommit 36e657fc3dbf2173e9c13f7fdb30e67addd25057[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Mon Nov 22 01:14:30 2021 +0100
+
+    login-signup-logout
+
+[33mcommit 8ea6ebca590e5643196c798c2e1283287d9eb394[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Sun Nov 21 23:02:57 2021 +0100
+
+    form validation
+
+[33mcommit 5762ebbd3859eff30d24a0efcb3784fc65d065b2[m
+Merge: 6ca124c 0b843e9
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Sun Nov 21 22:52:20 2021 +0100
+
+    Merge branch 'main' of https://github.com/pilauria/project2-team
+
+[33mcommit 6ca124c39ecde6340056d22fd5d0ec87ba462f0d[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Sun Nov 21 22:52:12 2021 +0100
+
+    Eliminado carpeta de prueba - No he añadido código
+
+[33mcommit aab27b0c633a01b8d03e419f2d535db6c620cd28[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Sun Nov 21 21:28:26 2021 +0100
+
+    Added Changes
+
+[33mcommit 0aff1f3f4b2281ab091b65657bc05a9526b4aad2[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Sun Nov 21 19:06:51 2021 +0100
+
+    visual
+
+[33mcommit 0b843e908e3d46ce94478490564cc9dd6cd0fad4[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Sun Nov 21 18:09:02 2021 +0100
+
+    css
+
+[33mcommit 9d8946e580cc16b28d73ea7c5e1d2f1925ca3383[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Sun Nov 21 12:16:05 2021 +0100
+
+    create routes list+create
+
+[33mcommit ccdcf00530a27c85f828ae6ec81e7ec7f7d54026[m
+Merge: 15a5092 ed8339b
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Sat Nov 20 13:11:16 2021 +0100
+
+    Merge pull request #7 from pilauria/zamo
+    
+    Zamo Carrousell
+
+[33mcommit ed8339bd3ddcf02e81cb2e0c0ffa866fbff78393[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Sat Nov 20 03:42:58 2021 +0100
+
+    carrusel
+
+[33mcommit 3ec2d977804d0ee743b1ad21e0e765d7b333389c[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Sat Nov 20 03:41:48 2021 +0100
+
+    carrusel
+
+[33mcommit 15a50925d9b2d8bec9ae92e8a1ac2a008d81d2c5[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Fri Nov 19 18:18:09 2021 +0100
+
+    login fixed
+
+[33mcommit c10745f737e8f1e62d568a72b7b2ead6ac47536b[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Fri Nov 19 18:05:44 2021 +0100
+
+    minor changes done
+
+[33mcommit 75ed37468ea32830a9a04712ceb484eacb36ca55[m
+Merge: 4370e5e f7520b9
+Author: EricER <84539055+4EPIC@users.noreply.github.com>
+Date:   Fri Nov 19 18:01:09 2021 +0100
+
+    Merge pull request #6 from pilauria/horizontal-scrolling
+    
+    logo y scrolling
+
+[33mcommit f7520b93ce2e72ed7b77ce3964168dfa6fa7bb47[m[33m ([m[1;31morigin/horizontal-scrolling[m[33m)[m
+Merge: 4c71a07 4370e5e
+Author: EricER <84539055+4EPIC@users.noreply.github.com>
+Date:   Fri Nov 19 18:00:57 2021 +0100
+
+    Merge branch 'main' into horizontal-scrolling
+
+[33mcommit 4370e5e732f1104a0ff97809a593813d78215133[m
+Merge: a16fa3d feacb74
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 17:56:35 2021 +0100
+
+    Merge pull request #5 from pilauria/routes
+    
+    routes user iniciado
+
+[33mcommit 4c71a076ebb2badad349b91f50e99b58800b33fa[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Fri Nov 19 17:54:22 2021 +0100
+
+    logo y scrolling
+
+[33mcommit a16fa3dcb253c190a417f449ab6c7924b49c06fa[m
+Merge: ed5ba59 5e9f2e7
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 17:53:41 2021 +0100
+
+    Merge pull request #4 from pilauria/create_forms
+    
+    create login-signup-forms
+
+[33mcommit 5e9f2e79a02268b6482f21c89a9e5104a3fbb233[m[33m ([m[1;31morigin/create_forms[m[33m)[m
+Merge: 003f188 ed5ba59
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 17:53:29 2021 +0100
+
+    Merge branch 'main' into create_forms
+
+[33mcommit feacb748bf02174572c128a01ef3dadef406a0a0[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Fri Nov 19 17:49:21 2021 +0100
+
+    routes user iniciado
+
+[33mcommit 003f188b17292566c04bb6ff7377a3fbe79682ac[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Fri Nov 19 17:48:47 2021 +0100
+
+    create login-signup-forms
+
+[33mcommit ed5ba590b572c6941c7e68f3b8fbbcb5f23aa9dc[m
+Merge: c90fea0 b3dee37
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 17:03:38 2021 +0100
+
+    Merge pull request #3 from pilauria/redmiHome
+    
+    estructura index
+
+[33mcommit b3dee3798a4d53b3b2d9d1fa5133ab473a71a8fc[m[33m ([m[1;31morigin/redmiHome[m[33m)[m
+Merge: 19ee0f6 c90fea0
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 17:03:32 2021 +0100
+
+    Merge branch 'main' into redmiHome
+
+[33mcommit 19ee0f6b0199ebc588e2a11fa13bf3b05cd6ad05[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Fri Nov 19 16:59:33 2021 +0100
+
+    estructura index
+
+[33mcommit c90fea0e36d9b1257c3f2e59ef43f01130aa5f5c[m
+Merge: 3f12f30 73085de
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Fri Nov 19 16:02:41 2021 +0100
+
+    Merge branch 'main' of https://github.com/pilauria/project2-team
+
+[33mcommit 3f12f30b00065b5f7017f94a7d6ea33ac4cc4f45[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Fri Nov 19 15:56:53 2021 +0100
+
+    configuration mongodb done
+
+[33mcommit 73085de17b81c6f9fbd4d594e99a5b96fa9ed9a8[m
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 15:37:56 2021 +0100
+
+    Create .env
+
+[33mcommit c38736591a91106d59ed0d00822e9eb23212e271[m
+Merge: 66f9e35 3c757f9
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 15:26:08 2021 +0100
+
+    Merge pull request #2 from pilauria/models
+    
+    first version of user and meme models
+
+[33mcommit 3c757f93afd4e236cb2423cb87ba88c1ccfc2d48[m[33m ([m[1;31morigin/models[m[33m)[m
+Author: David.Guardia <david5050885@yahoo.es>
+Date:   Fri Nov 19 15:21:14 2021 +0100
+
+    first version of user and meme models
+
+[33mcommit 66f9e35d6cbbb3de97696e0967bc5de4e77c817b[m
+Merge: 5ad9764 4ccf400
+Author: Pietro Lauria <75096288+pilauria@users.noreply.github.com>
+Date:   Fri Nov 19 09:56:01 2021 +0100
+
+    Merge pull request #1 from pilauria/add_readme
+    
+    add readme
+
+[33mcommit 4ccf4003913efab2f8570f31c84fe32d4afc1821[m
+Author: Eric Esteban <eric_7@hotmail.com>
+Date:   Fri Nov 19 09:51:19 2021 +0100
+
+    readme
+
+[33mcommit 5ad9764ef04897f200928d548381a8ef48ed4727[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Fri Nov 19 09:43:35 2021 +0100
+
+    add marco template1
+
+[33mcommit 603c93730499e6bbcc777179d78a604c2624788d[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Fri Nov 19 09:42:20 2021 +0100
+
+    add marco template
+
+[33mcommit eb3eb7ae6503393bcff151b68f25cad2661357a9[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Thu Nov 18 23:07:53 2021 +0100
+
+    add 2 readme examples
+
+[33mcommit 3a946974ac1da69b6f0298235b19a92def029045[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Thu Nov 18 22:06:25 2021 +0100
+
+    readme structure
+
+[33mcommit 2cfcbbbbd3f8da4a05f2ce706f0aba0c67a35bfb[m
+Author: pilauria <ptr.lauria@gmail.com>
+Date:   Thu Nov 18 22:02:27 2021 +0100
+
+    initial commit
