@@ -3,6 +3,9 @@
 {{#if userInSession}}
   <h2>Welcome, {{userInSession.username}}!</h2>
   <p>This is your profile page!</p>
+  {{#each findMemes}}
+  <a href="/memes/update/{{_id}}"><img src="{{url}}"></a>
+  {{/each}}
   <button>
     <a href='user-profile'>Reload the page</a>
   </button>

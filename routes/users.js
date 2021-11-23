@@ -7,6 +7,7 @@ const isLoggedIn = require('../middleware/isLoggedIn.js');
 const isNotLoggedIn = require('../middleware/isNotLoggedIn.js');
 
 const User = require('../models/User.model');
+const Meme = require('../models/Meme.model');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -67,7 +68,7 @@ router
     res.render('login-form');
   })
   .post(async (req, res, next) => {
-    console.log('SESSION =====> ', req.session);
+    // console.log('SESSION =====> ', req.session);
     try {
       const { email, password } = req.body;
       if (email === '' || password === '') {
@@ -99,16 +100,17 @@ router
     }
   });
 
-router.get('/user-profile', isLoggedIn, (req, res) => {
+router.get('/user-profile', isLoggedIn, async (req, res) => {
   const userId = req.session.currentUser._id;
   console.log(userId);
+  const findMemes = await Meme.find({ owner: userId }).populate('owner');
   res.render('user-profile', {
     userInSession: req.session.currentUser,
+    findMemes,
   });
 });
 
 router.post('/logout', isLoggedIn, (req, res) => {
-  console.log('108:', req);
   req.session.destroy();
   res.redirect('/');
 });
