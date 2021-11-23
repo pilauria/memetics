@@ -1,0 +1,12 @@
+{{#each getAll}}
+<div>
+    <img src="{{url}}">
+    <span>User: {{owner.username}}</span>
+    <span><a href="/memes/finished/{{_id}}">Favourite</a>
+    <h1> fav id: {{favId}}</h1>
+    {{#if (areEquals owner._id favId)}}
+    <span>asdadsadsds{{error}}</span>
+    {{/if}}
+    </span><span>{{error}}</span>
+</div>
+{{/each}}

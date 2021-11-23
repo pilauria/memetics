@@ -29,6 +29,11 @@ module.exports = app => {
   app.set('view engine', 'hbs');
 
   hbs.registerPartials(path.join(__dirname, '..', '/views/partials'));
+  const hbsfunction = hbs.create({});
+  
+  hbs.registerHelper('areEquals', function(arg1, arg2) {
+    return (arg1 == arg2);
+});
 
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, '..', 'public')));
