@@ -1,5 +1,9 @@
+
 MONGODB_URI=mongodb+srv://pilauria:CtbSHUys2yPQlyxW@cluster0.q3aua.mongodb.net/project2-team?authSource=admin&replicaSet=atlas-12yrdj-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true
 PORT=3000
 memeURL=https://api.imgflip.com/get_memes
 createURL=https://api.imgflip.com/caption_image
 SESSION_SECRET=Globtrotters-secret
+API_USER=bering20;
+API_PASSWORD=ironhack;
+
