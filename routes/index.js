@@ -6,7 +6,9 @@ const Api = require('../apis/api');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  User.find().then(users => res.render('index', { title: 'Express', users }));
+  const isAutorized = req.session.currentUser ? true : false;
+
+  User.find().then(users => res.render('index', { users, isAutorized }));
 });
 
 /* GET from API */

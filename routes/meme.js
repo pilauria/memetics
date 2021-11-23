@@ -7,10 +7,11 @@ const { on } = require('npmlog');
 const { config } = require('dotenv');
 const isLoggedIn = require('../middleware/isLoggedIn')
 
-router.get('/', async (req, res, next) => {
+router.get('/', isLoggedIn, async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
-  res.render('meme-list', { allMemes });
+  const isAutorized = req.session.currentUser ? true : false;
+  res.render('meme-list', { allMemes, isAutorized });
 });
 
 router
