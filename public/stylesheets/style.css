@@ -1,17 +1,16 @@
 body {
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
-  background-image: url('/images/photo-1563223566-f731efbdbab0.jpeg');
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/photo-1563223566-f731efbdbab0.jpeg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  /* background-color: #464646; */
   padding: 0;
   margin: 0;
 }
 
 a {
-  color: #00b7ff;
+  color: #ffffff;
 }
 
 /* Main */
@@ -165,4 +164,68 @@ nav > ul > li > a {
   font-size: 0.8rem;
   color: #aaa;
   margin-bottom: 0;
+}
+
+/* Meme List */
+.title-memes {
+  text-align: center;
+  text-shadow: #000000 3px 3px;
+}
+
+.mt-boxes {
+  padding-top: 1.5%;
+  padding-bottom: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  width: 100%;
+  margin: 0 auto;
+  gap: 5rem;
+  justify-content: center;
+  background-color: #fefefebb;
+}
+
+.mt-box {
+  width: 20%;
+  height: 20%;
+  display: block;
+  justify-content: center;
+}
+.mt-img-wrap {
+  justify-content: center;
+}
+
+.mt-box img {
+  max-width: 100%;
+  max-width: 15em;
+  padding: 5%;
+  display: block;
+  margin: auto;
+}
+
+.mt-title {
+  color: #000000;
+  text-align: center;
+  font-size: 1em;
+}
+
+.mt-caption {
+  display: block;
+  margin: auto;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.mt-caption:hover {
+  background-color: #4095c6;
 }
