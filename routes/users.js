@@ -89,6 +89,7 @@ router
       } else if (bcrypt.compareSync(password, userExists.password)) {
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = userExists;
+        //res.redirect('/users/user-profile');
         res.redirect('user-profile');
       } else {
         // if the two passwords DON'T match, render the login form again

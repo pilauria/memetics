@@ -5,6 +5,7 @@
   <p>This is your profile page!</p>
   {{#each findMemes}}
   <a href="/memes/update/{{_id}}"><img src="{{url}}"></a>
+  <a href="/memes/delete/{{_id}}">Delete!</a>
   {{/each}}
   <button>
     <a href='user-profile'>Reload the page</a>
