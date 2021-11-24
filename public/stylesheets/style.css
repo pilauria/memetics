@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fefefe7a;
   background-image: url("/images/photo-1563223566-f731efbdbab0.jpeg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -9,8 +10,30 @@ body {
   margin: 0;
 }
 
+button {
+  text-align: center;
+  display: block;
+  margin: auto;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  transition: all 0.2s;
+}
+
 a {
   color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* Main */
@@ -153,6 +176,7 @@ nav > ul > li > a {
 
 /* FOOTER */
 .footer-basic {
+  width: auto;
   padding: 5%;
   background-color: #1b1b1b;
   color: #4b4c4d;
@@ -181,7 +205,7 @@ nav > ul > li > a {
   /* border: 1px solid red; */
   width: 100%;
   margin: 0 auto;
-  gap: 5rem;
+  gap: 3em;
   justify-content: center;
   background-color: #fefefebb;
 }
@@ -189,28 +213,40 @@ nav > ul > li > a {
 .mt-box {
   width: 20%;
   height: 20%;
+  max-width: 100%;
+  min-width: 10em;
   display: block;
   justify-content: center;
+  gap: 10em;
 }
+
 .mt-img-wrap {
   justify-content: center;
+  padding: 1em 0em;
 }
 
 .mt-box img {
-  max-width: 100%;
-  max-width: 15em;
-  padding: 5%;
+  max-width: 90%;
   display: block;
   margin: auto;
+  border-radius: 8px;
+  box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+}
+
+.mt-box img:hover {
+  box-shadow: 0px 0px 10px 0px hsl(0deg 0% 100% / 80%);
 }
 
 .mt-title {
   color: #000000;
   text-align: center;
   font-size: 1em;
+  max-width: 100%;
 }
 
 .mt-caption {
+  max-width: 100%;
+  text-align: center;
   display: block;
   margin: auto;
   padding: 0.3em 1.2em;
@@ -222,12 +258,12 @@ nav > ul > li > a {
   font-weight: 300;
   color: #ffffff;
   background-color: #4eb5f1;
-  text-align: center;
   transition: all 0.2s;
 }
 
 .mt-caption:hover {
   background-color: #4095c6;
+  box-shadow: 0px 0px 10px 0px hsl(0deg 0% 100% / 80%);
 }
 
 /* Profile */
@@ -244,7 +280,7 @@ nav > ul > li > a {
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 4px;
-  font-family: "calibri";
+  font-family: "Roboto", sans-serif;
   color: white;
   box-shadow: 7px 13px 37px #000;
 }
@@ -255,13 +291,14 @@ nav > ul > li > a {
 }
 
 .controls {
-  width: 100%;
+  width: 95%;
   background: #24303c;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 16px;
-  border: 1px solid #1f53c5;
-  font-family: "calibri";
+  border: 1px solid #c51f1f;
+  /* border: 1px solid #1f53c5; */
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   color: white;
 }
@@ -285,12 +322,17 @@ nav > ul > li > a {
 
 .form-register .botons {
   width: 100%;
-  background: #1f53c5;
+  background: #c51f1f;
   border: none;
   padding: 12px;
   color: white;
   margin: 16px 0;
   font-size: 16px;
+}
+
+.form-register .botons:hover {
+  background: rgba(200, 0, 0, 1);
+  box-shadow: 0px 0px 5px 0px hsl(0deg 0% 100% / 80%);
 }
 
 /* Error */
