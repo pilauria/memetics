@@ -121,7 +121,8 @@ router
             owner: userId,
             template: oneMeme.id,
           });
-          res.render('meme-result', { img, isAuthorized: true, userName });
+          const _id = newMeme._id
+          res.render('meme-result', { img, isAuthorized: true, userName ,_id });
         }
         //else{()}
       })
@@ -148,6 +149,7 @@ router
           memeToBeUpdated,
           numberOfBoxes,
           isAuthorized,
+          userName
         });
     } catch (err) {
       console.log(err);
@@ -222,7 +224,6 @@ router.get('/delete/:id', async (req, res) => {
     console.log("-------------->", deleteMeme._id)
     const deleted = await User.findByIdAndUpdate({ _id: el.id }, { $pullAll: {favourites: [deleteMeme._id]}})
   }
-  //, { $pull: {"deleteMeme.owner.favourites": [deleteMeme._id] } } 
   res.redirect('/users/user-profile');
 });
 
@@ -246,7 +247,7 @@ router.get('/finished/:id', async (req, res) => {
 })
 
 
-router.get('/finished', async (req, res) => {
+router.get('/finished', isLoggedIn, async (req, res) => {
 
   const getAll = await Meme.find().populate('owner').lean()
   const userid = req.session.currentUser._id
@@ -256,7 +257,7 @@ router.get('/finished', async (req, res) => {
   //console.log("userfav",user)
   const newArr = getAll.map((memes) => {
 
-    if (user.favourites.includes(memes._id)) {
+    if (user.favourites && user.favourites.includes(memes._id)) {
       memes["checked"] = "yo";
 
     } else {

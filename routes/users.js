@@ -44,6 +44,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
     const salt = bcrypt.genSaltSync(5);
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
+    req.session.currentUser = newUser
     res.render('index', { message: 'User created!!', user: username });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -111,8 +112,26 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
     findMemes,
     isAuthorized: true,
     userName,
+    userId
   });
 });
+
+router.get('/delete-user/:id', async (req, res)=>{
+  const userId = req.params.id
+  console.log(userId) // 619e53e819aae81e4c6a51ff
+  const deleteUser = await User.findByIdAndDelete(userId)
+  const memeCreatedByDeletedUser = await Meme.find({owner: userId})
+  console.log("------------------------",memeCreatedByDeletedUser)
+  for(let el of memeCreatedByDeletedUser){
+    const deleteMeme = await Meme.findByIdAndDelete(el._id)
+    const updatedUser = await User.find( {favourites: el._id})
+    for(let el of updatedUser){ 
+      const deleted = await User.findByIdAndUpdate({ _id: el.id }, { $pullAll: {favourites: [deleteMeme._id]}})
+    }
+  }
+  
+  res.redirect('/')
+})
 
 router.post('/logout', isLoggedIn, (req, res) => {
   req.session.destroy();
