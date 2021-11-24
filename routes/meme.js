@@ -257,9 +257,7 @@ router.get('/finished', async (req, res) => {
   const getAll = await Meme.find().populate('owner').lean();
   const userid = req.session.currentUser._id;
   const user = await User.findById(userid);
-  // const newAll = [...getAll]
-  //console.log("=====>", getAll)
-  //console.log("userfav",user)
+
   const newArr = getAll.map(memes => {
     if (user.favourites.includes(memes._id)) {
       memes['checked'] = 'yo';

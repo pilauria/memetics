@@ -9,14 +9,10 @@
 <div class='glide'>
   <div data-glide-el='track' class='glide__track'>
     <ul class='glide__slides'>
-      {{#each allMemes}}
-        <div class='mt-box'>
-          <div class='mt-title'>{{name}}</div>
-          <div class='mt-img-wrap'><a href='/memes/create/{{id}}'><img
-                src='{{url}}'
-              /></a></div>
-          {{!-- <div class="mt-caption"><a href="/memes/create/{{id}}">Add Caption</a></div> --}}
-        </div>
+      {{#each fewMemes}}
+
+        <li class='glide__slide'> <img src='{{url}}' /></li>
+
       {{/each}}
     </ul>
   </div>
@@ -36,6 +32,7 @@
     <button class='glide__bullet' data-glide-dir='=1'></button>
     <button class='glide__bullet' data-glide-dir='=2'></button>
   </div>
+
 </div>
 
 <section class='tutorial'>
