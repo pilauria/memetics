@@ -1,39 +1,47 @@
 {{#if message}}
-  <p class='message'>{{message}}</p>
+  <p class="message">{{message}}</p>
 {{/if}}
 
-<h2>Sign up!</h2>
-<div>
-  <form action='/users/signup' method='POST'>
-    <label for='username'>Username:</label>
+<div class="form-register">
+  <h2>Sign up!</h2>
+  <form action="/users/signup" method="POST">
+    {{! <label class="controls" for="username">Username:</label> }}
     <input
+      class="controls"
       required
-      type='text'
-      name='username'
-      minlength='3'
-      maxlength='10'
-      placeholder='choose a username'
+      type="text"
+      name="username"
+      minlength="3"
+      maxlength="10"
+      placeholder="Chose Username"
     />
 
-    <label for='email'>Email:</label>
-    <input required type='email' name='email' placeholder='type your email' />
-
-    <label for='password'>Password:</label>
+    {{! <label class="controls" class="" for="email">Email:</label> }}
     <input
+      class="controls"
       required
-      type='password'
-      name='password'
-      id='password'
-      placeholder='choose wisely'
+      type="email"
+      name="email"
+      placeholder="Your Email"
     />
 
-    <button type='submit'>Create account</button>
+    {{! <label class="controls" class="" for="password">Password:</label> }}
+    <input
+      class="controls"
+      required
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Insert Password"
+    />
+
+    <button class="botons" type="submit">Create account</button>
   </form>
 
-  <a href='login' class='btn marginTop'>Log in instead</a>
+  <a href="login" class="btn marginTop">Log in instead</a>
 
   {{#if errorMessage}}
-    <p class='error'>{{errorMessage}}</p>
+    <p class="error">{{errorMessage}}</p>
   {{/if}}
 
 </div>

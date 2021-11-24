@@ -7,17 +7,21 @@ const Api = require('../apis/api');
 /* GET home page. */
 router.get('/', (req, res) => {
   const isAuthorized = req.session.currentUser ? true : false;
-  if(isAuthorized === true){
+  if (isAuthorized === true) {
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     User.find().then(users =>
       res.render('index', { users, isAuthorized, userName })
     );
-  }else{
-    User.find().then(users =>
-      res.render('index', { users, isAuthorized })
-    );
+  } else {
+    User.find().then(users => res.render('index', { users, isAuthorized }));
   }
 });
 
+/* GET from API */
+router.get('/api', (req, res) => {
+  Api.getAll().then(entity =>
+    res.render('index', { title: 'Express', users: entity })
+  );
+});
 
 module.exports = router;

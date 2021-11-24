@@ -9,22 +9,17 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const { memoryStorage } = require('multer');
 const { update } = require('../models/User.model');
 
-
-
 router.get('/', async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
   const isAuthorized = req.session.currentUser ? true : false;
-  if(isAuthorized === true){
+  if (isAuthorized === true) {
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     res.render('meme-list', { allMemes, isAuthorized, userName });
-  }else{
+  } else {
     res.render('meme-list', { allMemes, isAuthorized });
   }
-  
-  
 });
-
 
 router
   .route('/create/:id')
@@ -32,7 +27,7 @@ router
     try {
       console.log('session current user', req.session.currentUser);
       const idMeme = req.params.id;
-      const getMemes = await MemeApi.getAll()
+      const getMemes = await MemeApi.getAll();
       const allMemes = getMemes.data.data.memes;
       let userName = req.session.currentUser.username.charAt(0).toUpperCase();
       let index = null;
@@ -59,7 +54,6 @@ router
       console.log(err);
     }
   })
-
   .post(async (req, res) => {
     const userId = req.session.currentUser._id;
     console.log('session', userId);
@@ -121,8 +115,8 @@ router
             owner: userId,
             template: oneMeme.id,
           });
-          const _id = newMeme._id
-          res.render('meme-result', { img, isAuthorized: true, userName ,_id });
+          const _id = newMeme._id;
+          res.render('meme-result', { img, isAuthorized: true, userName, _id });
         }
         //else{()}
       })
@@ -138,7 +132,7 @@ router
       const allMemes = getMemes.data.data.memes;
       let userName = req.session.currentUser.username.charAt(0).toUpperCase();
       const memeToBeUpdated = await Meme.findById(idMeme);
-      console.log(memeToBeUpdated)
+      console.log(memeToBeUpdated);
       const numberOfBoxes = [];
       for (let i = 1; i <= memeToBeUpdated.box_count; i++)
         numberOfBoxes.push(`Box ${i}`);
@@ -150,7 +144,7 @@ router
           memeToBeUpdated,
           numberOfBoxes,
           isAuthorized,
-          userName
+          userName,
         });
     } catch (err) {
       console.log(err);
@@ -214,73 +208,79 @@ router
   });
 
 router.get('/delete/:id', async (req, res) => {
-  const deleteMeme = await Meme.findByIdAndDelete(req.params.id).populate('owner');
+  const deleteMeme = await Meme.findByIdAndDelete(req.params.id).populate(
+    'owner'
+  );
   //const updatedUser = await User.findByIdAndUpdate(deleteMeme.owner._id, {$pull: {deleteMeme.owner.favourites : deleteMeme._id}}, {new: true })
-  const updatedUser2 = await User.find( {favourites: deleteMeme._id})
-  
-  for(let el of updatedUser2){
-    console.log("-------------------->",el)
-    console.log("-------------------->",el._id)
-    console.log("-------------------->",el.favourites)
-    console.log("-------------->", deleteMeme._id)
-    const deleted = await User.findByIdAndUpdate({ _id: el.id }, { $pullAll: {favourites: [deleteMeme._id]}})
+  const updatedUser2 = await User.find({ favourites: deleteMeme._id });
+
+  for (let el of updatedUser2) {
+    console.log('-------------------->', el);
+    console.log('-------------------->', el._id);
+    console.log('-------------------->', el.favourites);
+    console.log('-------------->', deleteMeme._id);
+    const deleted = await User.findByIdAndUpdate(
+      { _id: el.id },
+      { $pullAll: { favourites: [deleteMeme._id] } }
+    );
   }
+  //, { $pull: {"deleteMeme.owner.favourites": [deleteMeme._id] } }
   res.redirect('/users/user-profile');
 });
 
-router.get('/community/:id', async (req, res) => {
-  const favId = req.params.id  // id meme
-  const getAll = await Meme.find().populate('owner')
+router.get('/finished/:id', async (req, res) => {
+  const favId = req.params.id; // id meme
+  const getAll = await Meme.find().populate('owner');
 
-  const userId = req.session.currentUser._id  // id usuario
-  const user = await User.findById(userId)
-  const userName = req.session.currentUser.username
-  console.log(userName)
+  const userId = req.session.currentUser._id; // id usuario
+  const user = await User.findById(userId);
+  const userName = req.session.currentUser.username;
+  console.log(userName);
 
   if (user.favourites.indexOf(favId) === -1) {
-    const updateFav = await User.findByIdAndUpdate(userId, { "$push": { "favourites": favId } })
-    res.redirect('/memes/community')
+    const updateFav = await User.findByIdAndUpdate(userId, {
+      $push: { favourites: favId },
+    });
+    res.redirect('/memes/finished');
+  } else {
+    console.log('hello');
+    res.render('meme-finished', {
+      getAll,
+      userName,
+      favId,
+      data: 'Already in favourites',
+    });
   }
-  else {
-    console.log("hello")
-    res.render('meme-finished', { getAll, userName, favId, data: "Already in favourites" })
-  }
-})
+});
 
-
-router.get('/community', isLoggedIn, async (req, res) => {
-
-  const getAll = await Meme.find().populate('owner').lean()
-  const userid = req.session.currentUser._id
-  const user = await User.findById(userid)
+router.get('/finished', async (req, res) => {
+  const getAll = await Meme.find().populate('owner').lean();
+  const userid = req.session.currentUser._id;
+  const user = await User.findById(userid);
   // const newAll = [...getAll]
   //console.log("=====>", getAll)
   //console.log("userfav",user)
-  const newArr = getAll.map((memes) => {
-
-    if (user.favourites && user.favourites.includes(memes._id)) {
-      memes["checked"] = "yo";
-
+  const newArr = getAll.map(memes => {
+    if (user.favourites.includes(memes._id)) {
+      memes['checked'] = 'yo';
     } else {
-      memes["checked"] = "no"
+      memes['checked'] = 'no';
     }
-    return memes
+    return memes;
+  });
 
-  })
-
-   //console.log("adkljdsadsadas", newArr)
-
-
-
-
-
-
+  //console.log("adkljdsadsadas", newArr)
 
   let userName = req.session.currentUser.username.charAt(0).toUpperCase();
   const isAuthorized = req.session.currentUser ? true : false;
-  res.render('meme-finished', { getAll, isAuthorized, userName })
-})
+  res.render('meme-finished', { getAll, isAuthorized, userName });
+});
 
+router.get('/finished', async (req, res) => {
+  const getAll = await Meme.find().populate('owner');
+  console.log(getAll);
+  res.render('meme-finished', { getAll });
+});
 
 router.get('/', async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
@@ -288,7 +288,5 @@ router.get('/', async (req, res, next) => {
   const isAuthorized = req.session.currentUser ? true : false;
   res.render('meme-list', { allMemes, isAuthorized });
 });
-
-
 
 module.exports = router;
