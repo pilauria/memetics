@@ -282,3 +282,5 @@ router.get('/', async (req, res, next) => {
   const isAuthorized = req.session.currentUser ? true : false;
   res.render('meme-list', { allMemes, isAuthorized });
 });
+
+module.exports = router;

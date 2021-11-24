@@ -44,7 +44,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
     const salt = bcrypt.genSaltSync(5);
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
-    req.session.currentUser = newUser
+    req.session.currentUser = newUser;
     res.render('index', { message: 'User created!!', user: username });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -112,29 +112,32 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
     findMemes,
     isAuthorized: true,
     userName,
-    userId
+    userId,
   });
 });
 
-router.get('/delete-user/:id', async (req, res)=>{
+router.get('/delete-user/:id', async (req, res) => {
   //get user id from url
-  const userId = req.params.id
+  const userId = req.params.id;
   // buscar el usuario a eliminar por id y eliminarlo
-  const deleteUser = await User.findByIdAndDelete(userId)
+  const deleteUser = await User.findByIdAndDelete(userId);
   // Buscamos todos los memes que tienen como owner el usuario eleiminado
-  const memeCreatedByDeletedUser = await Meme.find({owner: userId})
+  const memeCreatedByDeletedUser = await Meme.find({ owner: userId });
   // hacemos loop entre el array memeCreatedByDeletedUser y eliminamos cada meme por su id
   // también creamos un array updateUser con los usuarios que tienen entre favourites el id del meme borrado
-  for(let el of memeCreatedByDeletedUser){
-    const deleteMeme = await Meme.findByIdAndDelete(el._id)
-    const updatedUser = await User.find( {favourites: el._id})
+  for (let el of memeCreatedByDeletedUser) {
+    const deleteMeme = await Meme.findByIdAndDelete(el._id);
+    const updatedUser = await User.find({ favourites: el._id });
     // por último eliminamos el id del meme dentro de cada favourites de cada usuario
-    for(let el of updatedUser){ 
-      const deleted = await User.findByIdAndUpdate({ _id: el.id }, { $pullAll: {favourites: [deleteMeme._id]}})
+    for (let el of updatedUser) {
+      const deleted = await User.findByIdAndUpdate(
+        { _id: el.id },
+        { $pullAll: { favourites: [deleteMeme._id] } }
+      );
     }
   }
-  res.redirect('/')
-})
+  res.redirect('/');
+});
 
 router.post('/logout', isLoggedIn, (req, res) => {
   req.session.destroy();
