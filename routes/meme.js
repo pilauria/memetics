@@ -138,6 +138,7 @@ router
       const allMemes = getMemes.data.data.memes;
       let userName = req.session.currentUser.username.charAt(0).toUpperCase();
       const memeToBeUpdated = await Meme.findById(idMeme);
+      console.log(memeToBeUpdated)
       const numberOfBoxes = [];
       for (let i = 1; i <= memeToBeUpdated.box_count; i++)
         numberOfBoxes.push(`Box ${i}`);
@@ -227,7 +228,7 @@ router.get('/delete/:id', async (req, res) => {
   res.redirect('/users/user-profile');
 });
 
-router.get('/finished/:id', async (req, res) => {
+router.get('/community/:id', async (req, res) => {
   const favId = req.params.id  // id meme
   const getAll = await Meme.find().populate('owner')
 
@@ -238,7 +239,7 @@ router.get('/finished/:id', async (req, res) => {
 
   if (user.favourites.indexOf(favId) === -1) {
     const updateFav = await User.findByIdAndUpdate(userId, { "$push": { "favourites": favId } })
-    res.redirect('/memes/finished')
+    res.redirect('/memes/community')
   }
   else {
     console.log("hello")
@@ -247,7 +248,7 @@ router.get('/finished/:id', async (req, res) => {
 })
 
 
-router.get('/finished', isLoggedIn, async (req, res) => {
+router.get('/community', isLoggedIn, async (req, res) => {
 
   const getAll = await Meme.find().populate('owner').lean()
   const userid = req.session.currentUser._id

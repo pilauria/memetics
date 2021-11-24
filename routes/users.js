@@ -117,19 +117,22 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
 });
 
 router.get('/delete-user/:id', async (req, res)=>{
+  //get user id from url
   const userId = req.params.id
-  console.log(userId) // 619e53e819aae81e4c6a51ff
+  // buscar el usuario a eliminar por id y eliminarlo
   const deleteUser = await User.findByIdAndDelete(userId)
+  // Buscamos todos los memes que tienen como owner el usuario eleiminado
   const memeCreatedByDeletedUser = await Meme.find({owner: userId})
-  console.log("------------------------",memeCreatedByDeletedUser)
+  // hacemos loop entre el array memeCreatedByDeletedUser y eliminamos cada meme por su id
+  // también creamos un array updateUser con los usuarios que tienen entre favourites el id del meme borrado
   for(let el of memeCreatedByDeletedUser){
     const deleteMeme = await Meme.findByIdAndDelete(el._id)
     const updatedUser = await User.find( {favourites: el._id})
+    // por último eliminamos el id del meme dentro de cada favourites de cada usuario
     for(let el of updatedUser){ 
       const deleted = await User.findByIdAndUpdate({ _id: el.id }, { $pullAll: {favourites: [deleteMeme._id]}})
     }
   }
-  
   res.redirect('/')
 })
 
