@@ -7,6 +7,7 @@ const { on } = require('npmlog');
 const { config } = require('dotenv');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const { memoryStorage } = require('multer');
+const { update } = require('../models/User.model');
 
 
 
@@ -211,9 +212,17 @@ router
 
 router.get('/delete/:id', async (req, res) => {
   const deleteMeme = await Meme.findByIdAndDelete(req.params.id).populate('owner');
-  console.log("@@@@@@@@@@@@",deleteMeme)
-  const updatedUser = await User.findByIdAndUpdate(deleteMeme.owner._id, {$pull: {"owner.favourites" : deleteMeme._id}}, {new: true })
-  console.log("---------->",updatedUser)
+  //const updatedUser = await User.findByIdAndUpdate(deleteMeme.owner._id, {$pull: {deleteMeme.owner.favourites : deleteMeme._id}}, {new: true })
+  const updatedUser2 = await User.find( {favourites: deleteMeme._id})
+  
+  for(let el of updatedUser2){
+    console.log("-------------------->",el)
+    console.log("-------------------->",el._id)
+    console.log("-------------------->",el.favourites)
+    console.log("-------------->", deleteMeme._id)
+    const deleted = await User.findByIdAndUpdate({ _id: el.id }, { $pullAll: {favourites: [deleteMeme._id]}})
+  }
+  //, { $pull: {"deleteMeme.owner.favourites": [deleteMeme._id] } } 
   res.redirect('/users/user-profile');
 });
 
@@ -238,11 +247,12 @@ router.get('/finished/:id', async (req, res) => {
 
 
 router.get('/finished', async (req, res) => {
+
   const getAll = await Meme.find().populate('owner').lean()
   const userid = req.session.currentUser._id
   const user = await User.findById(userid)
   // const newAll = [...getAll]
-  console.log("=====>", getAll)
+  //console.log("=====>", getAll)
   //console.log("userfav",user)
   const newArr = getAll.map((memes) => {
 
@@ -256,7 +266,7 @@ router.get('/finished', async (req, res) => {
 
   })
 
-   console.log("adkljdsadsadas", newArr)
+   //console.log("adkljdsadsadas", newArr)
 
 
 
