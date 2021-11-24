@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
   const fewMemes = allMemes.filter(meme => meme.height < 380);
-  console.log(fewMemes);
   const isAuthorized = req.session.currentUser ? true : false;
   if (isAuthorized === true) {
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
