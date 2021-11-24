@@ -1,17 +1,25 @@
 {{! views/users/user-profile.hbs }}
 
-{{#if userInSession}}
-  <h2>Welcome, {{userInSession.username}}!</h2>
-  <p>This is your profile page!</p>
-  {{#each findMemes}}
-  <a href="/memes/update/{{_id}}"><img src="{{url}}"></a>
-  <a href="/memes/delete/{{_id}}">Delete!</a>
-  
-  {{/each}}
-  <button>
-    <a href='user-profile'>Reload the page</a>
-  </button>
-  <a href="/users/delete-user/{{userId}}">Delete User</a>
-{{else}}
-  <p>Still no logged in user, sorry!</p>
-{{/if}}
+<div class='profile'>
+  {{#if userInSession}}
+    <h2>Welcome, {{userInSession.username}}!</h2>
+    <p>This is your profile page!</p>
+    <div class='mt-boxes'>
+      {{#each findMemes}}
+        <div class='mt-box'>
+          <div class='mt-img-wrap'><a href='/memes/update/{{_id}}'><img
+                src='{{url}}'
+              /></a></div>
+          <div class='mt-caption'><a
+              href='/memes/delete/{{_id}}'
+            >Delete!</a></div>
+        </div>
+      {{/each}}
+    </div>
+    <button>
+      <a href='user-profile'>Reload the page</a>
+    </button>
+  {{else}}
+    <p>Still no logged in user, sorry!</p>
+  {{/if}}
+</div>

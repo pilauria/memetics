@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const User = require('../models/User.model');
 const Meme = require('../models/Meme.model');
@@ -9,7 +9,7 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const { memoryStorage } = require('multer');
 const { update } = require('../models/User.model');
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
   const isAuthorized = req.session.currentUser ? true : false;
@@ -22,10 +22,10 @@ router.get('/', async (req, res, next) => {
 });
 
 router
-  .route('/create/:id')
+  .route("/create/:id")
   .get(isLoggedIn, async (req, res) => {
     try {
-      console.log('session current user', req.session.currentUser);
+      console.log("session current user", req.session.currentUser);
       const idMeme = req.params.id;
       const getMemes = await MemeApi.getAll();
       const allMemes = getMemes.data.data.memes;
@@ -42,9 +42,9 @@ router
       for (let i = 1; i <= one.box_count; i++) numberOfBoxes.push(`Box ${i}`);
       let isAuthorized = true;
       if (one.box_count < 3)
-        res.render('meme-create', { one, isAuthorized, userName });
+        res.render("meme-create", { one, isAuthorized, userName });
       else
-        res.render('meme-create+2', {
+        res.render("meme-create+2", {
           one,
           numberOfBoxes,
           isAuthorized,
@@ -57,7 +57,7 @@ router
 
   .post(async (req, res) => {
     const userId = req.session.currentUser._id;
-    console.log('session', userId);
+    console.log("session", userId);
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     const idMeme = req.params.id;
     const getMemes = await MemeApi.getAll();
@@ -74,8 +74,8 @@ router
     // Determinar número de boxes
     const template_id = idMeme;
     // ++++++++++++++++++++++++ Pietro, incluir en .env usuario y contraseña y cambiar aquí
-    const API_USER = 'bering20';
-    const API_PASSWORD = 'ironhack';
+    const API_USER = "bering20";
+    const API_PASSWORD = "ironhack";
     let params = {};
     if (oneMeme.box_count < 3) {
       const { text0, text1 } = req.body;
@@ -103,7 +103,7 @@ router
     }
 
     MemeApi.createMeme(params)
-      .then(async el => {
+      .then(async (el) => {
         if (el.data.success) {
           const img = el.data.data.url;
           const newMeme = await Meme.create({
@@ -121,11 +121,11 @@ router
         }
         //else{()}
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   });
 
 router
-  .route('/update/:id')
+  .route("/update/:id")
   .get(isLoggedIn, async (req, res) => {
     try {
       const idMeme = req.params.id;
@@ -139,9 +139,9 @@ router
         numberOfBoxes.push(`Box ${i}`);
       let isAuthorized = true;
       if (memeToBeUpdated.box_count < 3)
-        res.render('meme-update', { memeToBeUpdated, isAuthorized, userName });
+        res.render("meme-update", { memeToBeUpdated, isAuthorized, userName });
       else
-        res.render('meme-update+2', {
+        res.render("meme-update+2", {
           memeToBeUpdated,
           numberOfBoxes,
           isAuthorized,
@@ -168,8 +168,8 @@ router
         const { text0, text1 } = req.body;
         params = {
           template_id: template_id,
-          username: 'bering20',
-          password: 'ironhack',
+          username: "bering20",
+          password: "ironhack",
           text0: text0,
           text1: text1,
         };
@@ -178,8 +178,8 @@ router
       } else {
         params = {
           template_id: template_id,
-          username: 'bering20',
-          password: 'ironhack',
+          username: "bering20",
+          password: "ironhack",
         };
 
         for (let i = 0; i < memeToBeUpdated.box_count; i++) {
@@ -189,7 +189,7 @@ router
         }
       }
       MemeApi.createMeme(params)
-        .then(async el => {
+        .then(async (el) => {
           let isAuthorized = true;
           if (el.data.success) {
             const img = el.data.data.url;
@@ -198,11 +198,11 @@ router
               { url: img, text: totalText },
               { upsert: true }
             );
-            res.render('meme-result', { img, userName, isAuthorized });
+            res.render("meme-result", { img, userName, isAuthorized });
           } else {
           }
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } catch (err) {
       console.log(err);
     }
@@ -276,11 +276,11 @@ router.get('/community', isLoggedIn, async (req, res) => {
   res.render('meme-finished', { getAll, isAuthorized, userName });
 });
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
   const isAuthorized = req.session.currentUser ? true : false;
-  res.render('meme-list', { allMemes, isAuthorized });
+  res.render("meme-list", { allMemes, isAuthorized });
 });
 
 module.exports = router;
