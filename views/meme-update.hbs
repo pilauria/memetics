@@ -1,11 +1,19 @@
-<h1>UPDATE YOUR MEME!</h1>
-<img src='{{memeToBeUpdated.url}}' />
-<form action='/memes/update/{{memeToBeUpdated.id}}' method='POST'>
-
-  <label for='text0'>Insert text0</label>
-  <input type='text' name='text0' value="{{text.[0]}}" />
-  <label for='text1'>Insert text1</label>
-  <input type='text' name='text1' value="{{text.[1]}}"/>
-
-  <button type='submit'>Update Meme!</button>
-</form>
+<h1 class="title-memes">UPDATE YOUR MEME!</h1>
+<div class="mt-boxes">
+  <div class="mt-img-wrap">
+    <img src="{{memeToBeUpdated.url}}" />
+  </div>
+  <form action="/memes/update/{{memeToBeUpdated.id}}" method="POST">
+    <div class="meme-text">
+      <div>
+        <label for="text0">Insert text0</label>
+        <input type="text" name="text0" value="{{text0}}" />
+      </div>
+      <div>
+        <label for="text1">Insert text1</label>
+        <input type="text" name="text1" value="{{text1}}" />
+      </div>
+    </div>
+    <button type="submit">Update Meme!</button>
+  </form>
+</div>

@@ -1,10 +1,17 @@
-<img src='{{one.url}}' />
-<form action='/memes/create/{{one.id}}' method='POST'>
-    {{#each numberOfBoxes}} 
-    <div>
-        <label for='text'>Insert text {{this}}</label>
-        <input type='text' name='text' />
+<h1 class="title-memes">CREATE YOUR MEME!</h1>
+<div class="mt-boxes">
+  <div class="mt-img-wrap">
+    <img src="{{one.url}}" />
+  </div>
+  <form action="/memes/create/{{one.id}}" method="POST">
+    <div class="meme-text">
+      {{#each numberOfBoxes}}
+        <div>
+          <label for="text">Insert text {{this}}</label>
+          <input type="text" name="text" />
+        </div>
+      {{/each}}
     </div>
-    {{/each}}
-  <button type='submit'>Create Meme</button>
-</form>
+    <button type="submit">Create Meme!</button>
+  </form>
+</div>

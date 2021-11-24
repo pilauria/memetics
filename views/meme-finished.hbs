@@ -1,7 +1,16 @@
-{{#each getAll}}
-<div class="{{_id}}">
-    <img src="{{url}}">
-    <span>User: {{owner.username}}</span>
-    <span><a href="/memes/finished/{{_id}}">Favourite</a>
+<h1 class="title-memes">SEE THE OTHER MEME OF COMUNITY!</h1>
+<div class="mt-boxes">
+  {{#each getAll}}
+    <div class="mt-box">
+      <div class="{{_id}}">
+        <div class="mt-img-wrap"><img src="{{url}}" /></div>
+        <div class="mt-title">
+          <span>User: {{owner.username}}</span>
+          <div class="mt-caption"><a
+              href="/memes/finished/{{_id}}"
+            >Favourite</a></div>
+        </div>
+      </div>
+    </div>
+  {{/each}}
 </div>
-{{/each}}
