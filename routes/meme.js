@@ -7,8 +7,6 @@ const { on } = require('npmlog');
 const { config } = require('dotenv');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
-
-
 router.get('/', async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
   const allMemes = getMemes.data.data.memes;
@@ -17,14 +15,13 @@ router.get('/', async (req, res, next) => {
   res.render('meme-list', { allMemes, isAuthorized, userName });
 });
 
-
 router
   .route('/create/:id')
   .get(isLoggedIn, async (req, res) => {
     try {
       console.log('session current user', req.session.currentUser);
       const idMeme = req.params.id;
-      const getMemes = await MemeApi.getAll()
+      const getMemes = await MemeApi.getAll();
       const allMemes = getMemes.data.data.memes;
       let userName = req.session.currentUser.username.charAt(0).toUpperCase();
       let index = null;
@@ -51,7 +48,6 @@ router
       console.log(err);
     }
   })
-
   .post(async (req, res) => {
     const userId = req.session.currentUser._id;
     console.log('session', userId);
@@ -208,34 +204,30 @@ router.get('/delete/:id', async (req, res) => {
   res.redirect('/users/user-profile', userName);
 });
 
+router.get('/delete/:id', async (req, res) => {
+  const deleteMeme = await Meme.findByIdAndDelete({ _id: req.params.id });
+  res.redirect('/users/user-profile');
+});
 
-router.get('/delete/:id', async (req, res)=>{
-  const deleteMeme = await Meme.findByIdAndDelete({_id: req.params.id})
-  res.redirect('/users/user-profile')
-})
+router.get('/finished/:id', async (req, res) => {
+  const favId = req.params.id;
+  const getAll = await Meme.find().populate('owner');
+  const userId = req.session.currentUser._id;
+  const user = await User.findById(userId);
+  console.log(userId, favId);
+  if (user.favourites.indexOf(favId) === -1) {
+    const updateFav = await User.findByIdAndUpdate(userId, {
+      $push: { favourites: favId },
+    });
+  } else res.render('meme-finished', { error: 'Already in favourites' });
+  res.redirect('/memes/finished');
+});
 
-
-router.get('/finished/:id', async (req, res)=>{
-  const favId = req.params.id
-  const getAll = await Meme.find().populate('owner')
-  const userId = req.session.currentUser._id
-  const user = await User.findById(userId)
-  console.log(userId, favId)
-  if(user.favourites.indexOf(favId)===-1){
-    const updateFav = await User.findByIdAndUpdate(userId, { "$push": { "favourites": favId} })
-  }
-  else res.render('meme-finished', {error:"Already in favourites"})
-  res.redirect('/memes/finished')
-
-})
-
-
-router.get('/finished', async (req, res)=>{
-  const getAll = await Meme.find().populate('owner')
-  console.log(getAll)
-  res.render('meme-finished', {getAll})
-})
-
+router.get('/finished', async (req, res) => {
+  const getAll = await Meme.find().populate('owner');
+  console.log(getAll);
+  res.render('meme-finished', { getAll });
+});
 
 router.get('/', async (req, res, next) => {
   const getMemes = await MemeApi.getAll();
@@ -243,7 +235,5 @@ router.get('/', async (req, res, next) => {
   const isAuthorized = req.session.currentUser ? true : false;
   res.render('meme-list', { allMemes, isAuthorized });
 });
-
-
 
 module.exports = router;
