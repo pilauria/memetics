@@ -19,7 +19,7 @@ const userSchema = new Schema({
     lowercase: true,
     trim: true,
   },
-  //favorites: [{ type: Schema.Types.ObjectId, ref: 'Meme', default: [] }]
+	favourites: [{ type: Schema.Types.ObjectId, ref: 'Meme', default: [] }]
 });
 
 const User = model('User', userSchema);

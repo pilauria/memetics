@@ -1,0 +1,8 @@
+<nav class='nav-wrapper'>
+  {{#if isAuthorized}}
+    {{>logNav}}
+{{else}}
+    {{>guestNav}}
+  {{/if}}
+
+</nav>

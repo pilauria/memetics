@@ -1,42 +1,42 @@
-<div class="form-register">
+<div class='form-register'>
   <h2>Log In</h2>
 
-  <form action="/users/login" method="post">
+  <form action='/users/login' method='POST'>
 
     {{! <label for='username'>Username:</label> }}
     <input
-      class="controls"
+      class='controls'
       required
-      type="text"
-      name="email"
-      placeholder="Username"
+      type='text'
+      name='email'
+      placeholder='Username'
     />
 
     {{! <label for='email'>Email:</label> }}
     <input
-      class="controls"
+      class='controls'
       required
-      type="email"
-      name="email"
-      placeholder="Email"
+      type='email'
+      name='email'
+      placeholder='Email'
     />
 
     {{! <label for='password'>Password:</label> }}
     <input
-      class="controls"
+      class='controls'
       required
-      type="password"
-      name="password"
-      placeholder="Password"
+      type='password'
+      name='password'
+      placeholder='Password'
     />
 
-    <button class="botons" type="submit">Login</button>
+    <button class='botons' type='submit'>Login</button>
     <div>
-      <a href="signup" class="btn marginTop">Sign up instead</a>
+      <a href='signup' class='btn marginTop'>Sign up instead</a>
     </div>
 
     {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
+      <p class='error'>{{errorMessage}}</p>
     {{/if}}
 
   </form>
