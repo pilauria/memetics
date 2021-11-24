@@ -3,9 +3,9 @@
 <form action='/memes/update/{{memeToBeUpdated.id}}' method='POST'>
 
   <label for='text0'>Insert text0</label>
-  <input type='text' name='text0' value="{{text.[0]}}" />
+  <input type='text' name='text0' value="{{memeToBeUpdated.text.[0]}}" />
   <label for='text1'>Insert text1</label>
-  <input type='text' name='text1' value="{{text.[1]}}"/>
+  <input type='text' name='text1' value="{{memeToBeUpdated.text.[1]}}"/>
 
   <button type='submit'>Update Meme!</button>
 </form>

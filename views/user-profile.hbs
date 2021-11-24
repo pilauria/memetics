@@ -6,10 +6,12 @@
   {{#each findMemes}}
   <a href="/memes/update/{{_id}}"><img src="{{url}}"></a>
   <a href="/memes/delete/{{_id}}">Delete!</a>
+  
   {{/each}}
   <button>
     <a href='user-profile'>Reload the page</a>
   </button>
+  <a href="/users/delete-user/{{userId}}">Delete User</a>
 {{else}}
   <p>Still no logged in user, sorry!</p>
 {{/if}}

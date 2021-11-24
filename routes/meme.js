@@ -115,7 +115,8 @@ router
             owner: userId,
             template: oneMeme.id,
           });
-          res.render('meme-result', { img, isAuthorized: true, userName });
+          const _id = newMeme._id;
+          res.render('meme-result', { img, isAuthorized: true, userName, _id });
         }
         //else{()}
       })
@@ -131,6 +132,7 @@ router
       const allMemes = getMemes.data.data.memes;
       let userName = req.session.currentUser.username.charAt(0).toUpperCase();
       const memeToBeUpdated = await Meme.findById(idMeme);
+      console.log(memeToBeUpdated);
       const numberOfBoxes = [];
       for (let i = 1; i <= memeToBeUpdated.box_count; i++)
         numberOfBoxes.push(`Box ${i}`);
@@ -142,6 +144,7 @@ router
           memeToBeUpdated,
           numberOfBoxes,
           isAuthorized,
+          userName,
         });
     } catch (err) {
       console.log(err);
