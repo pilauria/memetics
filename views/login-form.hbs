@@ -1,23 +1,36 @@
-<div>
-  <h2>Login</h2>
+<div class='form-register'>
+  <h2>Log In</h2>
 
   <form action='/users/login' method='POST'>
 
-    <label for='username'>Username:</label>
-    <input required type='text' name='email' placeholder='type your username' />
-
-    <label for='email'>Email:</label>
-    <input required type='email' name='email' placeholder='type your email' />
-
-    <label for='password'>Password:</label>
+    {{! <label for='username'>Username:</label> }}
     <input
+      class='controls'
+      required
+      type='text'
+      name='email'
+      placeholder='Username'
+    />
+
+    {{! <label for='email'>Email:</label> }}
+    <input
+      class='controls'
+      required
+      type='email'
+      name='email'
+      placeholder='Email'
+    />
+
+    {{! <label for='password'>Password:</label> }}
+    <input
+      class='controls'
       required
       type='password'
       name='password'
-      placeholder='password here'
+      placeholder='Password'
     />
 
-    <button type='submit'>Login</button>
+    <button class='botons' type='submit'>Login</button>
     <div>
       <a href='signup' class='btn marginTop'>Sign up instead</a>
     </div>

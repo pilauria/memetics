@@ -1,8 +1,12 @@
-<h1>LIST OF MEMES</h1>
-
-<ul>
-  {{#each allMemes}}
-    <li>{{name}}</li>
-    <li><a href='/memes/create/{{id}}'><img src='{{url}}' /></a></li>
-  {{/each}}
-</ul>
+<h1 class="title-memes">LIST OF MEMES</h1>
+<div id="mt-boxes-rap" class="inbox">
+  <div class="mt-boxes">
+    {{#each allMemes}}
+      <div class="mt-box">
+        <div class="mt-title">{{name}}</div>
+        <div class="mt-img-wrap"><a href="/memes/create/{{id}}"><img src="{{url}}" /></a></div>
+        {{!-- <div class="mt-caption"><a href="/memes/create/{{id}}">Add Caption</a></div> --}}
+      </div>
+    {{/each}}
+  </div>
+</div>
