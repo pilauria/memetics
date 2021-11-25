@@ -121,6 +121,14 @@ h1 {
 .material-icons {
   color: rgba(200, 0, 0, 0.8);
 }
+.fav {
+  font-size: 0.9rem;
+}
+
+.cont {
+  display: inline;
+}
+
 .nav-profile {
   display: block;
   background: rgba(200, 0, 0, 0.8);
