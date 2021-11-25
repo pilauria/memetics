@@ -6,9 +6,13 @@
         <div class='mt-img-wrap'><img src='{{url}}' /></div>
         <div class='mt-title'>
           <span>User: {{owner.username}}</span>
-          <div class='mt-caption'><a
-              href='/memes/finished/{{_id}}'
-            >Favourite</a></div>
+
+          {{#if checked}}
+            <div class="mt-caption"><a href="/memes/community/{{_id}}">You like it!</a></div>
+          {{else}}
+            <div class="mt-caption"><a href="/memes/community/{{_id}}">Add to favourites</a></div>
+          {{/if}}
+
         </div>
       </div>
     </div>
