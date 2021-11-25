@@ -43,7 +43,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
     req.session.currentUser = newUser;
-    res.render('index', { message: 'User created!!', user: username });
+    res.redirect('/');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(500).render('signup-form', { errorMessage: error.message });

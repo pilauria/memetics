@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -6,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-
 
 html,
 body {
@@ -122,8 +120,6 @@ h1 {
 }
 
 .nav-profile {
-  width: 16px;
-  height: 16px;
   display: block;
   background: rgba(200, 0, 0, 0.8);
   color: white;
