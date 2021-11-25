@@ -1,7 +1,6 @@
 
 
 const addLike = (event) =>{
-    console.log(event.currentTarget)
 
     const id = event.currentTarget.dataset.memeId  
     console.log(id)
@@ -12,7 +11,6 @@ const addLike = (event) =>{
     
         event.target.innerText = meme.likes
     })
-    //const likedMeme = await Meme.findByIdAndUpdate()
   }
 
   const like = document.querySelectorAll(".likesButton");

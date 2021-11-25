@@ -6,24 +6,27 @@
       <div class='{{_id}}'>
         <div class='mt-img-wrap'><img src='{{url}}' /></div>
         <div class='mt-title'>
-          <span><span class="material-icons">perm_identity</span>:{{owner.username}}</span>
+          <span><span class="material-icons">perm_identity</span> {{owner.username}}</span>
+        {{#if ../userid}}  
           {{#if checked}}
-          <span>Fav<a href='/memes/community/{{_id}}'><span class='material-icons red'> favorite</span></a></span> 
+          <span>Fav<a href='/memes/community/{{_id}}'><span class='material-icons red fav'> favorite</span></a></span> 
           {{else}}
             <span>Fav
-            {{#if userName}}    
               <a
                 href='/memes/community/{{_id}}'
-              ><span class='material-icons'>favorite_border</span></a>
-            {{else}}
+              ><span class='material-icons fav'>favorite_border</span> </a></span>
+          {{/if}}
+        {{else}}
+            <span>Fav
               <a
                 href='/users/login'
-              ><span class='material-icons'>favorite_border</span></a>
-            {{/if}}
-
-              </span>
-          {{/if}}
-          <span>Likes:<span class="material-icons">thumb_up</span><span data-meme-id='{{_id}}' class='likesButton'>{{likes}}</span></span>
+              ><span class='material-icons'>favorite_border</span></a></span>
+        {{/if}}
+        {{#if ../userid}}  
+          <span>Likes <span class="material-icons">thumb_up</span> <span data-meme-id='{{_id}}' class='likesButton'>{{likes}}</span></span>
+        {{else}}
+          <span>Likes <span class="material-icons">thumb_up</span> <span>{{likes}}</span></span>
+        {{/if}}
         </div>
       </div>
     </div>
