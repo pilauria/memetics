@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-family: 'Poppins', sans-serif;
@@ -129,6 +135,7 @@ nav > ul > li > a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -20px;
 }
 
 .logo-index h3 {
@@ -225,6 +232,7 @@ nav > ul > li > a {
   gap: 3em;
   justify-content: center;
   background-color: #fefefe5b;
+  border-radius: 8px;
 }
 
 .mt-box {
