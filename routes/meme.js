@@ -95,7 +95,6 @@ router
         username: API_USER,
         password: API_PASSWORD,
       };
-
       for (let i = 0; i < oneMeme.box_count; i++) {
         let oneText = req.body.text[i];
         params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in teh url
@@ -120,7 +119,6 @@ router
           const _id = newMeme._id;
           res.render('meme-result', { img, isAuthorized: true, userName, _id });
         }
-        //else{()}
       })
       .catch(err => console.log(err));
   });
@@ -167,8 +165,8 @@ router
         const { text0, text1 } = req.body;
         params = {
           template_id: template_id,
-          username: 'bering20',
-          password: 'ironhack',
+          username: API_USER,
+          password: API_PASSWORD,
           text0: text0,
           text1: text1,
         };
@@ -180,7 +178,6 @@ router
           username: 'bering20',
           password: 'ironhack',
         };
-
         for (let i = 0; i < memeToBeUpdated.box_count; i++) {
           let oneText = req.body.text[i];
           params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in the url

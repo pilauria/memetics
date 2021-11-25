@@ -232,6 +232,7 @@ nav > ul > li > a {
   gap: 3em;
   justify-content: center;
   background-color: #fefefe5b;
+  border-radius: 8px;
 }
 
 .mt-box {
