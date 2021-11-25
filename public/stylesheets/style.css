@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -26,6 +30,11 @@ button {
   color: #ffffff;
   background-color: rgba(200, 0, 0, 0.8);
   transition: all 0.2s;
+}
+
+button:hover {
+  background: rgba(200, 0, 0, 1);
+  box-shadow: 0px 0px 10px 0px hsl(0deg 0% 100% / 80%);
 }
 
 a {
@@ -88,6 +97,12 @@ nav > ul > li > a {
   cursor: pointer;
 }
 
+.nav-links-item img {
+  display: block;
+  margin: 0;
+  width: 13em;
+}
+
 .nav-links-item a:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -102,8 +117,8 @@ nav > ul > li > a {
   font-weight: bold;
   text-align: center;
   /* padding-top: 0; */
-  font-size: 20px;
-  line-height: 16px;
+  font-size: 25px;
+  line-height: 0px;
   border: 2px solid white;
   cursor: pointer;
   transition: all 250ms ease-in-out;
@@ -138,7 +153,7 @@ nav > ul > li > a {
 }
 
 .glide__track li {
-  height: 200px;
+  height: 20em;
   width: auto;
   overflow: hidden;
   position: relative;
@@ -146,17 +161,18 @@ nav > ul > li > a {
 
 .glide__track img {
   display: block;
-  height: 200px;
+  height: 20em;
   object-fit: cover;
   object-position: center;
   position: absolute;
   width: 100%;
+  border-radius: 8px;
 }
 
 /* Start Tutorial */
 .tutorial {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 .tutorial-item {
@@ -180,6 +196,56 @@ nav > ul > li > a {
   width: 100%;
   color: aliceblue;
   text-shadow: 2px 2px 4px #000000;
+}
+
+.mt-tutorials {
+  padding-top: 1.5%;
+  padding-bottom: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 8px;
+  width: 100%;
+  margin: 0 auto;
+  gap: 2em;
+  justify-content: center;
+  background-color: #fefefebb;
+}
+
+.mt-tutorial {
+  width: 30%;
+  height: 30%;
+  max-width: 100%;
+  min-width: 10em;
+  display: block;
+  justify-content: center;
+  gap: 10em;
+}
+
+.mt-tutorial img {
+  max-width: 90%;
+  display: block;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+}
+
+.mt-tutorial img {
+  max-width: 90%;
+  display: block;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+}
+
+.list {
+  color: #000;
+  font-size: 1.6em;
+  width: 100%;
+}
+
+.list a {
+  color: #000;
 }
 
 /* FOOTER */
@@ -212,7 +278,7 @@ nav > ul > li > a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* border: 1px solid red; */
+  border-radius: 8px;
   width: 100%;
   margin: 0 auto;
   gap: 3em;
@@ -235,7 +301,7 @@ nav > ul > li > a {
   padding: 1em 0em;
 }
 
-.mt-boxes img{
+.mt-boxes img {
   max-width: 90%;
   display: block;
   margin: auto;
@@ -309,10 +375,19 @@ nav > ul > li > a {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 .button-edit button {
-  font-size: 2em;
+  font-size: 1.5em;
+}
+
+.button-edit button:hover {
+  text-decoration: none;
+  box-shadow: 0px 0px 10px 0px hsl(0deg 0% 100% / 80%);
 }
 
 /* Update Meme */
@@ -323,6 +398,17 @@ nav > ul > li > a {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.meme-text-size {
+  height: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.meme-text label {
+  font-size: 1.5em;
 }
 
 /* Profile */
@@ -352,6 +438,7 @@ nav > ul > li > a {
   font-family: "Roboto", sans-serif;
   color: white;
   box-shadow: 7px 13px 37px #000;
+  border-radius: 8px;
 }
 
 .form-register h2 {
@@ -407,4 +494,182 @@ nav > ul > li > a {
 /* Error */
 .error {
   margin-bottom: 10em;
+}
+
+@media (max-width: 840px) {
+  /* horizontal scrolling*/
+  .glide__track {
+    height: 30%;
+  }
+
+  .glide__track li {
+    height: 14em;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .glide__track img {
+    display: block;
+    height: 14em;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* Start Tutorial */
+  .mt-tutorials {
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 2em;
+    justify-content: center;
+    background-color: #fefefebb;
+  }
+
+  .mt-tutorial {
+    padding-top: 10px;
+    width: 40%;
+    height: 40%;
+    max-width: 100%;
+    min-width: 10em;
+    display: block;
+    justify-content: center;
+    gap: 10em;
+  }
+
+  .mt-tutorial img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+  }
+
+  .mt-tutorial img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+  }
+
+  .list {
+    color: #000;
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    padding: 50px 10px 45px 10px;
+    color: white;
+  }
+
+  nav {
+    width: 100%;
+    align-items: center;
+    background-color: #1b1b1b;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 0;
+    padding: 0px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+
+  .nav-links-item img {
+    display: block;
+    margin: 0;
+    width: 8em;
+  }
+
+  .nav-profile {
+    width: 12px;
+    height: 12px;
+    font-size: 20px;
+    line-height: 0px;
+  }
+
+  /* horizontal scrolling*/
+  .glide__track {
+    height: 30%;
+  }
+
+  .glide__track li {
+    height: 12em;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .glide__track img {
+    display: block;
+    height: 12em;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* Start Tutorial */
+  .mt-tutorials {
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 3em;
+    justify-content: center;
+    background-color: #fefefebb;
+  }
+
+  .mt-tutorial {
+    width: 60%;
+    height: 60%;
+    max-width: 100%;
+    min-width: 10em;
+    display: block;
+    justify-content: center;
+    gap: 10em;
+  }
+
+  .mt-tutorial img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+  }
+
+  .mt-tutorial img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.87);
+  }
+
+  .list {
+    color: #000;
+    font-size: 1.4em;
+  }
+
+  .meme-text label {
+    font-size: 1em;
+  }
 }
