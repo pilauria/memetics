@@ -1,16 +1,18 @@
-<h1 class="title-memes">SEE THE OTHER MEME OF COMUNITY!</h1>
-<div class="mt-boxes">
+<h1 class='title-memes'>CHECK OUT THE MOST POPULAR MEMES!</h1>
+<div class='mt-boxes'>
   {{#each getAll}}
-    <div class="mt-box">
-      <div class="{{_id}}">
-        <div class="mt-img-wrap"><img src="{{url}}" /></div>
-        <div class="mt-title">
+    <div class='mt-box'>
+      <div class='{{_id}}'>
+        <div class='mt-img-wrap'><img src='{{url}}' /></div>
+        <div class='mt-title'>
           <span>User: {{owner.username}}</span>
+
           {{#if checked}}
             <div class="mt-caption"><a href="/memes/community/{{_id}}">You like it!</a></div>
           {{else}}
             <div class="mt-caption"><a href="/memes/community/{{_id}}">Add to favourites</a></div>
           {{/if}}
+
         </div>
       </div>
     </div>

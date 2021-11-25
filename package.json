@@ -1,6 +1,6 @@
 {
   "name": "project2-template",
-  "engines": {"node":"16", "npm":"8" },
+  "engines":{"node": "16", "npm": "8"},
   "version": "0.0.0",
   "private": true,
   "scripts": {
