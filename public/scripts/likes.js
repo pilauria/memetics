@@ -8,7 +8,7 @@ const addLike = (event) =>{
     fetch(`/memes/liked/${id}`, {method:"PUT"})
     .then((res)=> res.json())
     .then((meme)=> {
-        console.log(">>>>>>>>>>event.currentTarget: ",event)
+        console.log(">>>>>>>>>>event.currentTarget: ",event.target)
     
         event.target.innerText = meme.likes
     })

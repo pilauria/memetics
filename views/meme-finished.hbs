@@ -6,22 +6,24 @@
       <div class='{{_id}}'>
         <div class='mt-img-wrap'><img src='{{url}}' /></div>
         <div class='mt-title'>
-          <span>User: {{owner.username}}</span>
-
+          <span><span class="material-icons">perm_identity</span>:{{owner.username}}</span>
           {{#if checked}}
-
-            <div><a href='/memes/community/{{_id}}'><span
-                  class='material-icons'
-                > favorite</span>
-
-              </a></div>
+          <span>Fav<a href='/memes/community/{{_id}}'><span class='material-icons red'> favorite</span></a></span> 
           {{else}}
-            <div><span>Add to Favourites:</span><a
+            <span>Fav
+            {{#if userName}}    
+              <a
                 href='/memes/community/{{_id}}'
-              ><span class='material-icons'>favorite_border</span></a></div>
-          {{/if}}
+              ><span class='material-icons'>favorite_border</span></a>
+            {{else}}
+              <a
+                href='/users/login'
+              ><span class='material-icons'>favorite_border</span></a>
+            {{/if}}
 
-          <button data-meme-id='{{_id}}' class='likesButton'>{{likes}}</button>
+              </span>
+          {{/if}}
+          <span>Likes:<span class="material-icons">thumb_up</span><span data-meme-id='{{_id}}' class='likesButton'>{{likes}}</span></span>
         </div>
       </div>
     </div>
