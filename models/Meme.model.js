@@ -28,7 +28,8 @@ const memeSchema = new Schema({
 	template: {
 		type: String
 	},
-	owner: {type: Schema.Types.ObjectId, ref: "User"}
+	owner: {type: Schema.Types.ObjectId, ref: "User"},
+	likes: {type: Number, default: 0}
 });
 
 const Meme = model('Meme', memeSchema);
