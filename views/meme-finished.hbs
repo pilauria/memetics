@@ -1,5 +1,6 @@
 <h1 class='title-memes'>CHECK OUT THE MOST POPULAR MEMES!</h1>
 <div class='mt-boxes'>
+
   {{#each getAll}}
     <div class='mt-box'>
       <div class='{{_id}}'>
@@ -8,17 +9,23 @@
           <span>User: {{owner.username}}</span>
 
           {{#if checked}}
-            <div class='mt-caption'><a href='/memes/community/{{_id}}'>You like
-                it!</a></div>
+
+            <div><a href='/memes/community/{{_id}}'><span
+                  class='material-icons'
+                > favorite</span>
+
+              </a></div>
           {{else}}
-            <div class='mt-caption'><a href='/memes/community/{{_id}}'>Add to
-                favourites</a></div>
+            <div><span>Add to Favourites:</span><a
+                href='/memes/community/{{_id}}'
+              ><span class='material-icons'>favorite_border</span></a></div>
           {{/if}}
+
           <button data-meme-id='{{_id}}' class='likesButton'>{{likes}}</button>
-          <span class='material-icons'>favorite</span>
         </div>
       </div>
     </div>
   {{/each}}
+
 </div>
 <script src='/scripts/likes.js'></script>

@@ -118,14 +118,16 @@ h1 {
   font-weight: bold;
   text-decoration: underline;
 }
-
+.material-icons {
+  color: rgba(200, 0, 0, 0.8);
+}
 .nav-profile {
   display: block;
   background: rgba(200, 0, 0, 0.8);
   color: white;
   font-weight: bold;
   text-align: center;
-  /* padding-top: 0; */
+  text-decoration: none;
   font-size: 25px;
   line-height: 0px;
   border: 2px solid white;
