@@ -43,7 +43,6 @@ router.post('/signup', async (req, res, next) => {
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
     req.session.currentUser = newUser;
-    console.log(newUser)
     res.redirect('/')
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
