@@ -12,9 +12,11 @@
           {{else}}
             <div class="mt-caption"><a href="/memes/community/{{_id}}">Add to favourites</a></div>
           {{/if}}
+          <button data-meme-id="{{_id}}" class="likesButton">{{likes}}</button>
 
         </div>
       </div>
     </div>
   {{/each}}
 </div>
+<script src='/scripts/likes.js'></script>
