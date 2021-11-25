@@ -5,6 +5,3 @@ const slider = new Glide('.glide', {
   perView: 3,
 });
 slider.mount();
-
-let counter = 0;
-let submitButton = document.getElementById('submitButton');

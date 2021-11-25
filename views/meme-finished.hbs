@@ -8,12 +8,14 @@
           <span>User: {{owner.username}}</span>
 
           {{#if checked}}
-            <div class="mt-caption"><a href="/memes/community/{{_id}}">You like it!</a></div>
+            <div class='mt-caption'><a href='/memes/community/{{_id}}'>You like
+                it!</a></div>
           {{else}}
-            <div class="mt-caption"><a href="/memes/community/{{_id}}">Add to favourites</a></div>
+            <div class='mt-caption'><a href='/memes/community/{{_id}}'>Add to
+                favourites</a></div>
           {{/if}}
-          <button data-meme-id="{{_id}}" class="likesButton">{{likes}}</button>
-
+          <button data-meme-id='{{_id}}' class='likesButton'>{{likes}}</button>
+          <span class='material-icons'>favorite</span>
         </div>
       </div>
     </div>
