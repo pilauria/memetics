@@ -7,3 +7,5 @@ const slider = new Glide(".glide", {
 slider.mount();
 
 
+
+

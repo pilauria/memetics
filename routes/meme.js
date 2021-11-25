@@ -29,7 +29,6 @@ router
   .route('/create/:id')
   .get(isLoggedIn, async (req, res) => {
     try {
-      console.log('session current user', req.session.currentUser);
       const idMeme = req.params.id;
       const getMemes = await MemeApi.getAll();
       const allMemes = getMemes.data.data.memes;
@@ -59,7 +58,6 @@ router
   })
   .post(async (req, res) => {
     const userId = req.session.currentUser._id;
-    console.log('session', userId);
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     const idMeme = req.params.id;
     const getMemes = await MemeApi.getAll();
@@ -132,7 +130,6 @@ router
       const allMemes = getMemes.data.data.memes;
       let userName = req.session.currentUser.username.charAt(0).toUpperCase();
       const memeToBeUpdated = await Meme.findById(idMeme);
-      console.log(memeToBeUpdated);
       const numberOfBoxes = [];
       for (let i = 1; i <= memeToBeUpdated.box_count; i++)
         numberOfBoxes.push(`Box ${i}`);
@@ -231,9 +228,7 @@ router.get('/community/:id', isLoggedIn, async (req, res) => {
   const user = await User.findById(userId);
 
   if (user.favourites.indexOf(favId) === -1) {
-    const updateFav = await User.findByIdAndUpdate(userId, {
-      $push: { favourites: favId },
-    });
+    const updateFav = await User.findByIdAndUpdate(userId, {$push: { favourites: favId },});
     res.redirect('/memes/community')
   } else {
     const deleted = await User.findByIdAndUpdate(
@@ -262,6 +257,25 @@ router.get('/community', isLoggedIn, async (req, res) => {
   res.render('meme-finished', { getAll, isAuthorized, userName, getAll });
 
 });
+
+router.put('/liked/:id', async (req, res)=>{
+  const user = req.session.currentUser._id
+  const memeId = req.params.id
+  const meme = await Meme.findById(memeId)
+  let valueLikes = meme.likes
+  if(!meme.likedByUser.includes(user)){
+    const liked = await Meme.findByIdAndUpdate(memeId, {$push: { likedByUser: user }})
+    valueLikes += 1
+  }else{
+    const notLiked = await Meme.findByIdAndUpdate(memeId, {$pull: { likedByUser: user }})
+    valueLikes -= 1
+  }
+  const memeLiked = await Meme.findByIdAndUpdate(memeId, {likes: valueLikes}, {new: true})
+  res.json(memeLiked)
+
+})
+
+//router.put('/unliked/:id', async)
 
 router.get('/', async (req, res, next) => {
   try {
