@@ -223,6 +223,7 @@ router.get('/delete/:id', async (req, res) => {
 
 router.get('/community/:id', isLoggedIn, async (req, res) => {
   const favId = req.params.id; // id meme
+  console.log(favId)
 
   const userId = req.session.currentUser._id; // id usuario
   const user = await User.findById(userId);
@@ -239,22 +240,27 @@ router.get('/community/:id', isLoggedIn, async (req, res) => {
   }
 });
 
-router.get('/community', isLoggedIn, async (req, res) => {
+router.get('/community' ,async (req, res) => {
 
   const getAll = await Meme.find().populate('owner').lean();
-  const userid = req.session.currentUser._id;
-  const user = await User.findById(userid);
+  if(req.session.currentUser) {
+    const userid = req.session.currentUser._id;
+    const user = await User.findById(userid);
 
-  for(let memes of getAll){
-      if (user.favourites && user.favourites.includes(memes._id)) {
-        memes['checked'] = true;
+    for(let memes of getAll){
+      if(user.favourites){
+        if(user.favourites.includes(memes._id)) {
+          memes['checked'] = true;
+        }
       }
-  };
-  req.session.favourites = getAll
+    }
+    req.session.favourites = getAll
 
-  let userName = req.session.currentUser.username.charAt(0).toUpperCase();
-  const isAuthorized = req.session.currentUser ? true : false;
-  res.render('meme-finished', { getAll, isAuthorized, userName, getAll });
+    let userName = req.session.currentUser.username.charAt(0).toUpperCase();
+    const isAuthorized = req.session.currentUser ? true : false;
+    res.render('meme-finished', { isAuthorized, userid, getAll, userName});
+  }
+  else res.render('meme-finished', { getAll });
 
 });
 
@@ -275,7 +281,6 @@ router.put('/liked/:id', async (req, res)=>{
 
 })
 
-//router.put('/unliked/:id', async)
 
 router.get('/', async (req, res, next) => {
   try {
