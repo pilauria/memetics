@@ -104,6 +104,12 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
     const userId = req.session.currentUser._id;
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     const findMemes = await Meme.find({ owner: userId }).populate('owner');
+    const favourites = await User.findById(userId).populate('favourites')
+    const fav = favourites.favourites
+    for(let el of fav){
+      console.log(el.url)
+    }
+    
 
     res.render('user-profile', {
       userInSession: req.session.currentUser,
@@ -111,6 +117,7 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
       isAuthorized: true,
       userName,
       userId,
+      fav
     });
   } catch (error) {
     console.log(error);
@@ -121,6 +128,7 @@ router.get('/delete-user/:id', async (req, res) => {
   try {
     //get user id from url
     const userId = req.params.id;
+    console.log(userId)
     // buscar el usuario a eliminar por id y eliminarlo
     const deleteUser = await User.findByIdAndDelete(userId);
     // Buscamos todos los memes que tienen como owner el usuario eleiminado

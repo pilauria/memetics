@@ -246,7 +246,7 @@ router.get('/delete/:id', async (req, res) => {
     const updatedUser2 = await User.find({ favourites: deleteMeme._id });
     //Hacemos loop entre los usuarios que tienen el meme en favoritos y eliminamos de favourites
     for (let el of updatedUser2) {
-            const deleted = await User.findByIdAndUpdate(
+      const deleted = await User.findByIdAndUpdate(
         { _id: el.id },
         { $pullAll: { favourites: [deleteMeme._id] } }
       );
@@ -257,29 +257,32 @@ router.get('/delete/:id', async (req, res) => {
   }
 });
 
-
+//
 router.get('/community/:id', isLoggedIn, async (req, res) => {
   const favId = req.params.id; // id meme
+  console.log(favId);
 
   const userId = req.session.currentUser._id; // id usuario
   const user = await User.findById(userId);
   //Si el usuario no tiene en favourites el id del meme, lo incluimos
   if (user.favourites.indexOf(favId) === -1) {
-    const updateFav = await User.findByIdAndUpdate(userId, {$push: { favourites: favId },});
-    res.redirect('/memes/community')
+    const updateFav = await User.findByIdAndUpdate(userId, {
+      $push: { favourites: favId },
+    });
+    res.redirect('/memes/community');
   } else {
     // si ya lo tenía en favoritos, lo eliminamos con $pullAll
     const deleted = await User.findByIdAndUpdate(
       { _id: userId },
       { $pullAll: { favourites: [favId] } }
     );
-      res.redirect('/memes/community')
+    res.redirect('/memes/community');
   }
 });
 
-router.get('/community', isLoggedIn, async (req, res) => {
-
+router.get('/community', async (req, res) => {
   const getAll = await Meme.find().populate('owner').lean();
+
   const userid = req.session.currentUser._id;
   const user = await User.findById(userid);
   // Si el usuario tiene un meme en favoritos. Añadimos a ese meme la propiedad checked.
@@ -287,15 +290,16 @@ router.get('/community', isLoggedIn, async (req, res) => {
   for(let memes of getAll){
       if (user.favourites && user.favourites.includes(memes._id)) {
         memes['checked'] = true;
-      }
-  };
-  req.session.favourites = getAll
+     }
+    }
+    req.session.favourites = getAll;
 
-  let userName = req.session.currentUser.username.charAt(0).toUpperCase();
-  const isAuthorized = req.session.currentUser ? true : false;
-  res.render('meme-finished', { getAll, isAuthorized, userName, getAll });
-
+    let userName = req.session.currentUser.username.charAt(0).toUpperCase();
+    const isAuthorized = req.session.currentUser ? true : false;
+    res.render('meme-finished', { isAuthorized, userid, getAll, userName });
+  } else res.render('meme-finished', { getAll });
 });
+
 
 // ruta creada para el addeventlistener que lleva el contador de likes. La acción comienza en el addevenlistener
 // Cuando se hace click hay un fetch que tiene esta url. Entramos aquí, cogemos el valor de likes que tiene el meme
@@ -317,6 +321,7 @@ router.put('/liked/:id', async (req, res)=>{
   res.json(memeLiked)
 
 })
+
 
 router.get('/', async (req, res, next) => {
   try {
