@@ -38,6 +38,10 @@ button {
   transition: all 0.2s;
 }
 
+.bin {
+  height: 100px;
+}
+
 button:hover {
   background: rgba(200, 0, 0, 1);
   box-shadow: 0px 0px 10px 0px hsl(0deg 0% 100% / 80%);
@@ -136,7 +140,10 @@ h1 {
 .textDesc {
   padding-right: 30px;
   display: flex;
+  color: #000000;
   justify-content: flex-end;
+  text-shadow: 1px 1px 3px #4e4e4e;
+  font-size: 1.2rem;
 }
 .fav {
   font-size: 0.9rem;
@@ -146,26 +153,7 @@ h1 {
   display: inline;
 }
 
-.nav-profile {
-  display: block;
-  background: rgba(200, 0, 0, 0.8);
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  font-size: 25px;
-  line-height: 0px;
-  border: 2px solid white;
-  cursor: pointer;
-  transition: all 250ms ease-in-out;
-  box-shadow: 0px 0px 0px 0px white;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.nav-profile,
 .nav-profile2 {
   display: block;
   background: rgba(200, 0, 0, 0.8);
@@ -203,7 +191,7 @@ h1 {
   align-items: center;
   margin-top: 15px;
 }
-#logout {
+.logout {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
@@ -454,6 +442,14 @@ h1 {
     4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #eeeeee,
     7px 6px 1px #cccccc;
 }
+
+.likesButton {
+  cursor: pointer;
+  padding: 10px;
+}
+/* .likeButton {
+  color: rgb(194, 32, 32);
+} */
 
 .button-edit {
   width: 100%;

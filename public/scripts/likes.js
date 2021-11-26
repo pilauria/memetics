@@ -12,3 +12,7 @@ const like = document.querySelectorAll('.likesButton');
 like.forEach(element => {
   element.addEventListener('click', addLike);
 });
+
+window.onload = () => {
+  console.log('fweefe');
+};

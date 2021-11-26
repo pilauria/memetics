@@ -13,13 +13,15 @@
             <div class='mt-img-wrap'>
               <a href='/memes/update/{{_id}}'><img src='{{url}}'/></a>
             </div>
-            <div class='mt-caption'>
-              <a href='/memes/delete/{{_id}}'>Delete!</a>
+            <div>
+              <a href='/memes/delete/{{_id}}'>
+              <img src="/images/baseline_delete_black_24dp.png" alt="">
+              </a>
             </div>
           </div>
         {{/each}}
       {{else}}
-        <p class="text-shadow">You don't have any memes yet! <a href="/memes">Create your first one!</a>
+        <p class="text-shadow ">You don't have any memes yet! <a href="/memes">Create your first one!</a>
         </p>
       {{/if}}
 
