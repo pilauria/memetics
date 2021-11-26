@@ -1,15 +1,15 @@
 <h1 class='title-memes'>CREATE YOUR MEME!</h1>
 <div class='mt-boxes'>
   <div class='mt-img-wrap'>
-    <img src='{{one.url}}' />
+    <img src='{{img}}' />
   </div>
   <form action='/memes/create/{{one.id}}' method='POST'>
     <div class='meme-text'>
-      <div class='meme-text-size'>
+      <div class='meme-text-size textForm'>
         <label for='text0'>Insert text 1</label>
         <input type='text' name='text0' />
       </div>
-      <div class='meme-text-size'>
+      <div class='meme-text-size textForm'>
         <label for='text1'>Insert text 2</label>
         <input type='text' name='text1' />
       </div>

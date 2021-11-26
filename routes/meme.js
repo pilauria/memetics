@@ -50,24 +50,76 @@ router
       }
       
       const one = allMemes[index];
-      const numberOfBoxes = [];
-      // Accedemos a la propiedad box_count para saber cuantas cajas de texto tiene el meme y guardamos 
-      // en un array el string Box 1, Box 2... que luego pasaremos al hbs
-      for (let i = 1; i <= one.box_count; i++) numberOfBoxes.push(`Box ${i}`);
-      let isAuthorized = true;
-      // cargamos hbs segun si tiene 2 o +2 cajas de texto 
-      if (one.box_count < 3)
-        res.render('meme-create', { one, isAuthorized, userName });
-      else
-        // en el caso de +2 pasamos tambien el array con los textos box 1, box 2 para cargarlos en el loop del hbs
-        res.render('meme-create+2', {
-          one,
-          numberOfBoxes,
-          isAuthorized,
-          userName,
-        });
-    } catch (err) {
-      console.log(err);
+      ///////
+      const template_id = idMeme;
+      const API_USER = process.env.API_USER;
+      const API_PASSWORD = process.env.API_PASSWORD;
+      // Determinar número de boxes
+      let params = {};
+      if (one.box_count < 3) {
+      const text0 = "Text #1";
+      const text1 = "Text #2";
+      params = {
+        template_id,
+        username: API_USER,
+        password: API_PASSWORD,
+        text0,
+        text1,
+      };
+    } else {
+      params = {
+        template_id: template_id,
+        username: API_USER,
+        password: API_PASSWORD,
+      };
+      
+      for (let i = 1; i <= one.box_count; i++) {
+        let oneText = `Text #${i}`;
+        params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in teh url
+      }
+    }
+    MemeApi.createMeme(params)
+      .then(async el => {
+        if (el.data.success) {
+          const img = el.data.data.url;
+          let isAuthorized = true;
+          let numberOfBoxes = []
+          for (let i = 1; i <= one.box_count; i++) {
+            let oneText = `Text #${i} here!`;
+            numberOfBoxes.push(oneText)
+          }
+          if (one.box_count < 3)
+            res.render('meme-create', { one, isAuthorized, userName, img });
+          else
+            res.render('meme-create+2', {
+            one,
+            numberOfBoxes,
+            isAuthorized,
+            userName,
+            img
+          });
+        }
+      })
+      .catch(err => console.log(err));
+
+      ///////
+      //const numberOfBoxes = [];
+      //for (let i = 1; i <= one.box_count; i++) numberOfBoxes.push(`Box ${i}`);
+      //let isAuthorized = true;
+      //if (one.box_count < 3)
+      //  res.render('meme-create', { one, isAuthorized, userName });
+      //else
+      //  res.render('meme-create+2', {
+      //    one,
+      //    numberOfBoxes,
+      //    isAuthorized,
+      //    userName,
+      //  });
+    //} catch (err) {
+    //  console.log(err);
+    }
+    catch(err){
+      console.log(err)
     }
   })
   .post(async (req, res) => {
