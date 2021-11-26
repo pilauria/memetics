@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 * {
   box-sizing: border-box;
@@ -12,9 +12,9 @@
 
 html,
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
-  background-image: url("/images/photo-1563223566-f731efbdbab0.jpeg");
+  background-image: url('/images/photo-1563223566-f731efbdbab0.jpeg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -35,7 +35,7 @@ button {
   border-radius: 2em;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #ffffff;
   background-color: rgba(200, 0, 0, 0.8);
@@ -415,7 +415,7 @@ h1 {
   border-radius: 2em;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #ffffff;
   background-color: #4eb5f1;
@@ -451,9 +451,15 @@ h1 {
   cursor: pointer;
   padding: 10px;
 }
-/* .likeButton {
-  color: rgb(194, 32, 32);
-} */
+#likeButton {
+  color: rgb(112, 112, 112);
+}
+
+#cont-logdelete {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
 .button-edit {
   width: 100%;
@@ -539,7 +545,7 @@ h1 {
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 4px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: white;
   box-shadow: 7px 13px 37px #000;
   border-radius: 8px;
@@ -558,7 +564,7 @@ h1 {
   margin-bottom: 16px;
   border: 1px solid #c51f1f;
   /* border: 1px solid #1f53c5; */
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   color: white;
 }
