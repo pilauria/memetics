@@ -1,5 +1,8 @@
 const addLike = event => {
-  const id = event.currentTarget.dataset.memeId;
+  document
+    .getElementById('username')
+    .parentNode.getElementsByTagName('label')[0].innerHTML;
+
   console.log('aa', event.currentTarget.dataset.memeId);
   fetch(`/memes/liked/${id}`, { method: 'PUT' })
     .then(res => res.json())
@@ -8,11 +11,7 @@ const addLike = event => {
     });
 };
 
-const like = document.querySelectorAll('.likesButton');
+const like = document.querySelectorAll('#likeButton');
 like.forEach(element => {
   element.addEventListener('click', addLike);
 });
-
-window.onload = () => {
-  console.log('fweefe');
-};
