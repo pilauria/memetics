@@ -6,8 +6,8 @@
   <form action="/memes/update/{{memeToBeUpdated.id}}" method="POST">
     <div class="meme-text">
       {{#each memeToBeUpdated.text}}
-        <div>
-          <label for="text">Insert text</label>
+        <div class="meme-text-size">
+          <label for="text">Text</label>
           <input type="text" name="text" value={{this}} />
         </div>
       {{/each}}
