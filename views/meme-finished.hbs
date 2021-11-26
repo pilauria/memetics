@@ -1,4 +1,11 @@
 <h1 class='title-memes'>CHECK OUT THE MOST POPULAR MEMES!</h1>
+<div class="text-shadow textDesc">
+<p>
+  <span>Click on <span class='material-icons'>favorite_border</span> to add to your favourites!</span>
+  <br>
+  <span>Click on <span class="material-icons">thumb_up</span> to give a like!</span>
+</p>
+</div>
 <div class='mt-boxes'>
 
   {{#each getAll}}
@@ -23,7 +30,7 @@
               ><span class='material-icons'>favorite_border</span></a></span>
         {{/if}}
         {{#if ../userid}}  
-          <span>Likes <span class="material-icons">thumb_up</span> <span data-meme-id='{{_id}}' class='likesButton'>{{likes}}</span></span>
+          <span>Likes <span id="likeButton" class="material-icons">thumb_up</span> <span data-meme-id='{{_id}}' class='likesButton'>{{likes}}</span></span>
         {{else}}
           <span>Likes <span class="material-icons">thumb_up</span> <span>{{likes}}</span></span>
         {{/if}}
