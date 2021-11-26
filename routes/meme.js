@@ -75,7 +75,7 @@ router
             let isAuthorized = true;
             let numberOfBoxes = [];
             for (let i = 1; i <= one.box_count; i++) {
-              let oneText = `Text ${i}`;
+              let oneText = `Text #${i}`;
               numberOfBoxes.push(oneText);
             }
             if (one.box_count < 3)
