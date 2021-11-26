@@ -21,7 +21,7 @@ router.get('/signup', isNotLoggedIn, (req, res) => {
 });
 
 // POST route ==> to process form data
-router.post('/signup', isNotLoggedIn, async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     // make sure users fill all mandatory fields:
@@ -43,7 +43,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
     req.session.currentUser = newUser;
-    res.redirect('/');
+    res.redirect('/')
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(500).render('signup-form', { errorMessage: error.message });
@@ -104,6 +104,12 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
     const userId = req.session.currentUser._id;
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     const findMemes = await Meme.find({ owner: userId }).populate('owner');
+    const favourites = await User.findById(userId).populate('favourites')
+    const fav = favourites.favourites
+    for(let el of fav){
+      console.log(el.url)
+    }
+    
 
     res.render('user-profile', {
       userInSession: req.session.currentUser,
@@ -111,6 +117,7 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
       isAuthorized: true,
       userName,
       userId,
+      fav
     });
   } catch (error) {
     console.log(error);
@@ -121,6 +128,7 @@ router.get('/delete-user/:id', async (req, res) => {
   try {
     //get user id from url
     const userId = req.params.id;
+    console.log(userId)
     // buscar el usuario a eliminar por id y eliminarlo
     const deleteUser = await User.findByIdAndDelete(userId);
     // Buscamos todos los memes que tienen como owner el usuario eleiminado

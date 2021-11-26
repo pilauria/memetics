@@ -1,26 +1,60 @@
 {{! views/users/user-profile.hbs }}
 
-  {{#if userInSession}}
 <div class='profile'>
-    <h2>Welcome, {{userInSession.username}}!</h2>
-    <p>This is your profile page!</p>
+  {{#if userInSession}}
+    <h2 class="text-shadow">Welcome, {{userInSession.username}}!</h2>
+    <p>Check your memes!</p>
     <div class='mt-boxes'>
-      {{#each findMemes}}
-        <div class='mt-box'>
-          <div class='mt-img-wrap'><a href='/memes/update/{{_id}}'><img
-                src='{{url}}'
-              /></a></div>
-          <div class='mt-caption'><a
-              href='/memes/delete/{{_id}}'
-            >Delete!</a></div>
-        </div>
-      {{/each}}
+      {{#if findMemes}}
+        {{#each findMemes}}
+          <div class='mt-box'>
+            <div class='mt-img-wrap'>
+              <a href='/memes/update/{{_id}}'><img src='{{url}}'/></a>
+            </div>
+            <div>
+              <a href='/memes/delete/{{_id}}'>
+              <img src="/images/baseline_delete_black_24dp.png" alt="">
+              </a>
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
+        <p class="text-shadow ">You don't have any memes yet! <a href="/memes">Create your first one!</a>
+        </p>
+      {{/if}}
+
+    </div>
+    <div>
+      <p class="text-shadow">My Favourites!</p>
+      <div class='mt-boxes'>
+
+      {{#if fav}}
+        {{#each fav}}
+          <div class='mt-box'>
+            <div class='mt-img-wrap'>
+              <img src='{{url}}'>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      {{else}}
+          <p class="text-shadow">Still no favourites added</p>
+      {{/if}}
+
     </div>
 
   {{else}}
-    <p>Still no logged in user, sorry!</p>
+    <p class="text-shadow">Still no logged in user, sorry!</p>
   {{/if}}
-</div>
-    <form class="button-profile" id="logout-form" action="/users/logout" method="POST">
+  
+
+
+  <form class="button-profile" id="logout-form" action="/users/logout" method="POST">
       <button>Logout</button>
-    </form>
+  </form>
+  <p class="text-shadow">
+  <a href="/users/delete-user/{{userInSession._id}}">
+    <button>Delete your account</button>
+  </a>
+  </p>
+</div>

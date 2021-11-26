@@ -1,8 +1,8 @@
 <ul>
 
-  <li class="nav-links-item">
-    <div class="nav-links-item-logo">
-      <a href="/" title="Home"><img src="/images/MEMETICS LOGO.png" /></a>
+  <li class='nav-links-item'>
+    <div class='nav-links-item-logo'>
+      <a href='/' title='Home'><img src='/images/MEMETICS LOGO.png' /></a>
     </div>
 
   </li>
@@ -17,17 +17,21 @@
 
 </ul>
 
-<ul id="nav-mobile" class="left hide-on-med-and-down">
-  {{! <li><form class="button-nav" id="logout-form" action="/users/logout" method="POST">
+<ul id='nav-mobile' class='left hide-on-med-and-down'>
+  <li><form
+      class='button-nav'
+      id='logout-form'
+      action='/users/logout'
+      method='POST'
+    >
 
-      <button>Logout</button>
+      <button class='logout'>Logout</button>
     </form>
-  </li> }}
-  <li>
-    <a
-      class="nav-profile"
-      href="/users/user-profile"
-      title="Profile"
-    >{{userName}}</a>
+  </li>
+    <li>
+      <div class='nav-profile2'>
+        <div><a href='/users/user-profile' title='Profile'>{{userName}}</a></div>
+      </div>
+    </li>
   </li>
 </ul>
