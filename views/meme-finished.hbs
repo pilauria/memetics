@@ -1,31 +1,46 @@
 <h1 class='title-memes'>CHECK OUT THE MOST POPULAR MEMES!</h1>
-<div class='mt-boxes'>
+<div class="mt-boxes-container">
+  <div class="text-shadow textDesc">
+  <p>
+    <span>Click on <span class='material-icons'>favorite_border</span> to add to your favourites!</span>
+    <br>
+    <span>Click on <span class="material-icons">thumb_up</span> to give a like!</span>
+  </p>
+  </div>
+  <div class='mt-boxes'>
 
   {{#each getAll}}
     <div class='mt-box'>
       <div class='{{_id}}'>
         <div class='mt-img-wrap'><img src='{{url}}' /></div>
         <div class='mt-title'>
-          <span>User: {{owner.username}}</span>
-
-          {{#if checked}}
-
-            <div><a href='/memes/community/{{_id}}'><span
-                  class='material-icons'
-                > favorite</span>
-
-              </a></div>
+          <span><span class="material-icons">perm_identity</span> {{owner.username}}</span>
+          {{#if ../userid}}  
+            {{#if checked}}
+            <span>Fav<a href='/memes/community/{{_id}}'><span class='material-icons red fav'> favorite</span></a></span> 
+            {{else}}
+              <span>Fav
+                <a
+                  href='/memes/community/{{_id}}'
+                ><span class='material-icons fav'>favorite_border</span> </a></span>
+            {{/if}}
           {{else}}
-            <div><span>Add to Favourites:</span><a
-                href='/memes/community/{{_id}}'
-              ><span class='material-icons'>favorite_border</span></a></div>
+              <span>Fav
+                <a
+                  href='/users/login'
+                ><span class='material-icons'>favorite_border</span></a></span>
           {{/if}}
-
-          <button data-meme-id='{{_id}}' class='likesButton'>{{likes}}</button>
+          {{#if ../userid}}  
+            <span>Likes <span id="likeButton" class="material-icons">thumb_up</span> <span data-meme-id='{{_id}}' class='likesButton'>{{likes}}</span></span>
+          {{else}}
+            <span>Likes <span class="material-icons">thumb_up</span> <span>{{likes}}</span></span>
+          {{/if}}
+          </div>
         </div>
       </div>
-    </div>
-  {{/each}}
+    {{/each}}
 
+  </div>
 </div>
+
 <script src='/scripts/likes.js'></script>

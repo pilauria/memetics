@@ -3,17 +3,19 @@
   <div class="mt-img-wrap">
     <img src="{{memeToBeUpdated.url}}" />
   </div>
-  <form action="/memes/update/{{memeToBeUpdated.id}}" method="POST">
-    <div class="meme-text">
-      <div class="meme-text-size">
-        <label for="text0">Insert text0</label>
-        <input type="text" name="text0" value="{{text0}}" />
+  <div class="formCreateUpdate">
+    <form action="/memes/update/{{memeToBeUpdated.id}}" method="POST">
+      <div class="meme-text">
+        <div class="meme-text-size">
+          <label for="text0">Insert text0</label>
+          <input type="text" name="text0" value="{{text0}}" />
+        </div>
+        <div class="meme-text-size">
+          <label for="text1">Insert text1</label>
+          <input type="text" name="text1" value="{{text1}}" />
+        </div>
       </div>
-      <div class="meme-text-size">
-        <label for="text1">Insert text1</label>
-        <input type="text" name="text1" value="{{text1}}" />
-      </div>
-    </div>
-    <button type="submit">Update Meme!</button>
-  </form>
+      <button type="submit">Update Meme!</button>
+    </form>
+  </div>
 </div>

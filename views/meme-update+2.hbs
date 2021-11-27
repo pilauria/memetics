@@ -3,15 +3,17 @@
   <div class="mt-img-wrap">
     <img src="{{memeToBeUpdated.url}}" />
   </div>
-  <form action="/memes/update/{{memeToBeUpdated.id}}" method="POST">
-    <div class="meme-text">
-      {{#each memeToBeUpdated.text}}
-        <div>
-          <label for="text">Insert text</label>
-          <input type="text" name="text" value={{this}} />
-        </div>
-      {{/each}}
-    </div>
-    <button type="submit">Update Meme!</button>
-  </form>
+  <div class="formCreateUpdate">
+    <form action="/memes/update/{{memeToBeUpdated.id}}" method="POST">
+      <div class="meme-text">
+        {{#each memeToBeUpdated.text}}
+          <div>
+            <label for="text">Insert text</label>
+            <input type="text" name="text" value={{this}} />
+          </div>
+        {{/each}}
+      </div>
+      <button type="submit">Update Meme!</button>
+    </form>
+  </div>
 </div>

@@ -1,10 +1,10 @@
-* {
-  box-sizing: border-box;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {
@@ -119,8 +119,30 @@ h1 {
   text-decoration: underline;
 }
 .material-icons {
-  color: rgba(200, 0, 0, 0.8);
+  color: rgba(27, 26, 26, 0.8);
+  top: 3px;
+  position: relative;
 }
+.red {
+  color: red;
+}
+.blue {
+  color: blue
+}
+.textDesc {
+  padding-right: 30px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fefefe5b;
+}
+.fav {
+  font-size: 0.9rem;
+}
+
+.cont {
+  display: inline;
+}
+
 .nav-profile {
   display: block;
   background: rgba(200, 0, 0, 0.8);
@@ -135,6 +157,31 @@ h1 {
   transition: all 250ms ease-in-out;
   box-shadow: 0px 0px 0px 0px white;
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-profile2 {
+  display: block;
+  background: rgba(200, 0, 0, 0.8);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  line-height: 0px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  box-shadow: 0px 0px 0px 0px white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-profile:hover {
@@ -151,7 +198,11 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -20px;
+  margin-top: 40px;
+}
+#logout {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 #logo {
@@ -186,6 +237,9 @@ h1 {
 }
 
 /* Start Tutorial */
+.main-p {
+  text-shadow: 1px 1px 6px #2c2c2c;
+}
 .tutorial {
   display: flex;
   flex-direction: row;
@@ -289,6 +343,8 @@ h1 {
   font-weight: 700;
   font-size: 2.2rem;
   letter-spacing: 2px;
+  margin-bottom: 50px;
+  margin-top: 0;
 }
 
 .mt-boxes {
@@ -297,20 +353,23 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border-radius: 8px;
   width: 100%;
   margin: 0 auto;
   gap: 3em;
   justify-content: center;
   background-color: #fefefe5b;
+}
+.mt-boxes-container{
+  background-color: #fefefe5b;
   border-radius: 8px;
 }
-
+.formCreateUpdate{
+  
+}
 .mt-box {
-  width: 20%;
-  height: 20%;
+  
   max-width: 100%;
-  min-width: 10em;
+  min-width: 29em;
   display: block;
   justify-content: center;
   gap: 10em;
@@ -330,7 +389,8 @@ h1 {
 }
 
 .mt-box img {
-  max-width: 90%;
+  width: auto;
+  max-height: 300px;
   display: block;
   margin: auto;
   border-radius: 8px;
@@ -347,6 +407,14 @@ h1 {
   font-size: 1.2em;
   max-width: 100%;
   text-shadow: 1px 1px 3px #4e4e4e;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+}
+.textDesc{
+  color: initial
 }
 
 .mt-caption {
@@ -430,6 +498,15 @@ h1 {
 
 .meme-text label {
   font-size: 1.5em;
+}
+.textForm{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.textForm input {
+  width: 50%;
 }
 
 /* Profile */
@@ -692,5 +769,17 @@ h1 {
 
   .meme-text label {
     font-size: 1em;
+  }
+}
+
+@media (max-width: 750px){
+  .mt-box{
+    width: 35%;
+  }
+}
+
+@media (max-width: 600px){
+  .mt-box{
+    width: 83%;
   }
 }
