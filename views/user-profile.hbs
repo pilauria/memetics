@@ -2,12 +2,15 @@
 
 <div class='profile'>
   {{#if userInSession}}
+
     <h2>Welcome, {{userInSession.username}}!</h2>
+
     <p>Check your memes!</p>
     <div class='mt-boxes'>
       {{#if findMemes}}
         {{#each findMemes}}
           <div class='mt-box'>
+
             <div class='mt-img-wrap'><a href='/memes/update/{{_id}}'><img
                   src='{{url}}'
                 /></a></div>
@@ -23,6 +26,7 @@
     <div>
       <p>My Favourites!</p>
       <div class='mt-boxes'>
+
       {{#if fav}}
         {{#each fav}}
           <div class='mt-box'>
@@ -33,14 +37,18 @@
         {{/each}}
       </div>
       {{else}}
+
           <p>Still no favourites added</p>
       {{/if}}
+
     </div>
   {{else}}
-    <p>Still no logged in user, sorry!</p>
+    <p class="text-shadow">Still no logged in user, sorry!</p>
   {{/if}}
+
   <p><a href="/users/delete-user/{{userInSession._id}}"><button>Delete your account</button></a></p>
   <form class='button-nav' id='logout-form' action='/users/logout' method='POST'>
     <button id='logout'>Logout</button>
   </form>
 </div>
+

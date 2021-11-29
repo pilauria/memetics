@@ -38,6 +38,10 @@ button {
   transition: all 0.2s;
 }
 
+.bin {
+  height: 100px;
+}
+
 button:hover {
   background: rgba(200, 0, 0, 1);
   box-shadow: 0px 0px 10px 0px hsl(0deg 0% 100% / 80%);
@@ -47,10 +51,6 @@ a {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 /* Main */
@@ -98,6 +98,10 @@ h1 {
   text-shadow: 2px 2px 4px #000000;
 }
 
+.text-shadow {
+  text-shadow: 2px 2px 4px #000000;
+}
+
 .nav-links {
   background: none;
 }
@@ -126,46 +130,37 @@ h1 {
 .red {
   color: red;
 }
+
 .blank {
   color: transparent;
 }
 .blue {
   color: blue
+
 }
 .textDesc {
   padding-right: 30px;
   display: flex;
   justify-content: flex-end;
   background-color: #fefefe5b;
+  color: #000000;
+  justify-content: flex-end;
+  text-shadow: 1px 1px 3px #4e4e4e;
+  font-size: 1.2rem;
+  background-color: #fefefe5b;
 }
+
 .fav {
   font-size: 0.9rem;
 }
+
 
 .cont {
   display: inline;
 }
 
-.nav-profile {
-  display: block;
-  background: rgba(200, 0, 0, 0.8);
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  font-size: 25px;
-  line-height: 0px;
-  border: 2px solid white;
-  cursor: pointer;
-  transition: all 250ms ease-in-out;
-  box-shadow: 0px 0px 0px 0px white;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+.nav-profile,
 .nav-profile2 {
   display: block;
   background: rgba(200, 0, 0, 0.8);
@@ -174,7 +169,7 @@ h1 {
   text-align: center;
   text-decoration: none;
   font-size: 25px;
-  line-height: 0px;
+  line-height: 12px;
   border: 2px solid white;
   cursor: pointer;
   transition: all 250ms ease-in-out;
@@ -185,7 +180,10 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
+
+
 
 .nav-profile:hover {
   background: rgba(200, 0, 0, 1);
@@ -201,9 +199,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 15px;
 }
-#logout {
+
+.logout {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
@@ -321,6 +320,10 @@ h1 {
   color: #000;
 }
 
+.list a:hover {
+  text-decoration: underline;
+}
+
 /* FOOTER */
 .footer-basic {
   width: auto;
@@ -348,6 +351,7 @@ h1 {
   letter-spacing: 2px;
   margin-bottom: 50px;
   margin-top: 0;
+
 }
 
 .mt-boxes {
@@ -370,7 +374,6 @@ h1 {
   
 }
 .mt-box {
-  
   max-width: 100%;
   min-width: 29em;
   display: block;
@@ -415,10 +418,12 @@ h1 {
   align-content: center;
   justify-content: space-around;
   align-items: center;
+
 }
-.textDesc{
+
+/* .textDesc{
   color: initial
-}
+} */
 
 .mt-caption {
   max-width: 100%;
@@ -462,6 +467,20 @@ h1 {
     7px 6px 1px #cccccc;
 }
 
+.likesButton {
+  cursor: pointer;
+  padding: 10px;
+}
+#likeButton {
+  color: rgb(112, 112, 112);
+}
+
+#cont-logdelete {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .button-edit {
   width: 100%;
   display: flex;
@@ -471,6 +490,10 @@ h1 {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+}
+
+.hide {
+  display: none;
 }
 
 .button-edit button {
@@ -497,16 +520,17 @@ h1 {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+  text-shadow: 1px 2px 3px #000000bb;
 }
 
 .meme-text label {
   font-size: 1.5em;
 }
+
 .textForm{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 .textForm input {
   width: 50%;
@@ -523,8 +547,18 @@ h1 {
   align-items: flex-start;
 }
 
+.profile h2 {
+  margin-top: 10px;
+}
+
 .profile button {
   font-size: 0.6em;
+}
+
+.button-profile {
+  display: flex;
+  justify-content: end;
+  margin-right: 3%;
 }
 
 /*log in & sign in*/
@@ -687,6 +721,7 @@ h1 {
     right: 0;
     top: 0;
     z-index: 10;
+    padding: 2%;
   }
 
   .nav-links-item img {
@@ -696,10 +731,10 @@ h1 {
   }
 
   .nav-profile {
-    width: 12px;
-    height: 12px;
+    /* width: 12px;
+    height: 12px; */
     font-size: 20px;
-    line-height: 0px;
+    line-height: 8px;
   }
 
   /* horizontal scrolling*/
@@ -772,6 +807,27 @@ h1 {
 
   .meme-text label {
     font-size: 1em;
+  }
+
+  .button-nav {
+    display: none;
+  }
+
+  .profile h2 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 750px) {
+  .mt-box {
+    width: 35%;
+  }
+}
+
+@media (max-width: 600px) {
+  .mt-box {
+    width: 83%;
   }
 }
 

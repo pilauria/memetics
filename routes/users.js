@@ -129,7 +129,9 @@ router.get('/delete-user/:id', async (req, res) => {
   try {
     //get user id from url
     const userId = req.params.id;
+
     req.session.destroy()
+
     // buscar el usuario a eliminar por id y eliminarlo
     const deleteUser = await User.findByIdAndDelete(userId);
     
