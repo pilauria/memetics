@@ -60,7 +60,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-// ------ LOGIN ------ //
+// ------ LOGIN ------ // 
 router
   .route('/login', isNotLoggedIn)
   .get((req, res) => {
@@ -69,6 +69,7 @@ router
   .post(async (req, res, next) => {
     // console.log('SESSION =====> ', req.session);
     try {
+      console.log(req.body)
       const { email, password } = req.body;
       if (email === '' || password === '') {
         res.render('login-form', {
@@ -128,9 +129,13 @@ router.get('/delete-user/:id', async (req, res) => {
   try {
     //get user id from url
     const userId = req.params.id;
-    console.log(userId)
+
+    req.session.destroy()
+
     // buscar el usuario a eliminar por id y eliminarlo
     const deleteUser = await User.findByIdAndDelete(userId);
+    
+    
     // Buscamos todos los memes que tienen como owner el usuario eleiminado
     const memeCreatedByDeletedUser = await Meme.find({ owner: userId });
     // hacemos loop entre el array memeCreatedByDeletedUser y eliminamos cada meme por su id

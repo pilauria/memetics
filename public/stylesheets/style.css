@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
@@ -134,25 +130,35 @@ h1 {
 .red {
   color: red;
 }
+
+.blank {
+  color: transparent;
+}
 .blue {
-  color: blue;
+  color: blue
+
 }
 .textDesc {
   padding-right: 30px;
   display: flex;
+  justify-content: flex-end;
+  background-color: #fefefe5b;
   color: #000000;
   justify-content: flex-end;
   text-shadow: 1px 1px 3px #4e4e4e;
   font-size: 1.2rem;
   background-color: #fefefe5b;
 }
+
 .fav {
   font-size: 0.9rem;
 }
 
+
 .cont {
   display: inline;
 }
+
 
 .nav-profile,
 .nav-profile2 {
@@ -174,7 +180,10 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
+
+
 
 .nav-profile:hover {
   background: rgba(200, 0, 0, 1);
@@ -192,6 +201,7 @@ h1 {
   align-items: center;
   margin-top: 15px;
 }
+
 .logout {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -340,7 +350,8 @@ h1 {
   font-size: 2.2rem;
   letter-spacing: 2px;
   margin-bottom: 50px;
-  margin-top: 40px;
+  margin-top: 0;
+
 }
 
 .mt-boxes {
@@ -349,20 +360,22 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border-radius: 8px;
   width: 100%;
   margin: 0 auto;
   gap: 3em;
   justify-content: center;
   background-color: #fefefe5b;
+}
+.mt-boxes-container{
+  background-color: #fefefe5b;
   border-radius: 8px;
 }
-
+.formCreateUpdate{
+  
+}
 .mt-box {
-  width: 26%;
-  height: 20%;
   max-width: 100%;
-  min-width: 10em;
+  min-width: 29em;
   display: block;
   justify-content: center;
   gap: 10em;
@@ -382,7 +395,8 @@ h1 {
 }
 
 .mt-box img {
-  max-width: 90%;
+  width: auto;
+  max-height: 300px;
   display: block;
   margin: auto;
   border-radius: 8px;
@@ -404,7 +418,12 @@ h1 {
   align-content: center;
   justify-content: space-around;
   align-items: center;
+
 }
+
+/* .textDesc{
+  color: initial
+} */
 
 .mt-caption {
   max-width: 100%;
@@ -507,7 +526,8 @@ h1 {
 .meme-text label {
   font-size: 1.5em;
 }
-.textForm {
+
+.textForm{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -807,6 +827,18 @@ h1 {
 
 @media (max-width: 600px) {
   .mt-box {
+    width: 83%;
+  }
+}
+
+@media (max-width: 750px){
+  .mt-box{
+    width: 35%;
+  }
+}
+
+@media (max-width: 600px){
+  .mt-box{
     width: 83%;
   }
 }

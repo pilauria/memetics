@@ -2,30 +2,29 @@
 
 <div class='profile'>
   {{#if userInSession}}
-    <h2 class="text-shadow">Welcome, {{userInSession.username}}!</h2>
+
+    <h2>Welcome, {{userInSession.username}}!</h2>
+
     <p>Check your memes!</p>
     <div class='mt-boxes'>
       {{#if findMemes}}
         {{#each findMemes}}
           <div class='mt-box'>
-            <div class='mt-img-wrap'>
-              <a href='/memes/update/{{_id}}'><img src='{{url}}'/></a>
-            </div>
-            <div>
-              <a href='/memes/delete/{{_id}}'>
-              <img src="/images/baseline_delete_black_24dp.png" alt="">
-              </a>
-            </div>
+
+            <div class='mt-img-wrap'><a href='/memes/update/{{_id}}'><img
+                  src='{{url}}'
+                /></a></div>
+            <div class='mt-caption'><a
+                href='/memes/delete/{{_id}}'
+              >Delete!</a></div>
           </div>
         {{/each}}
       {{else}}
-        <p class="text-shadow ">You don't have any memes yet! <a href="/memes">Create your first one!</a>
-        </p>
+        <p>You don't have any memes yet! <a href="/memes">Create your first one!</a></p>
       {{/if}}
-
     </div>
     <div>
-      <p class="text-shadow">My Favourites!</p>
+      <p>My Favourites!</p>
       <div class='mt-boxes'>
 
       {{#if fav}}
@@ -38,23 +37,18 @@
         {{/each}}
       </div>
       {{else}}
-          <p class="text-shadow">Still no favourites added</p>
+
+          <p>Still no favourites added</p>
       {{/if}}
 
     </div>
-
   {{else}}
     <p class="text-shadow">Still no logged in user, sorry!</p>
   {{/if}}
-  
 
-
-  <form class="button-profile" id="logout-form" action="/users/logout" method="POST">
-      <button>Logout</button>
+  <p><a href="/users/delete-user/{{userInSession._id}}"><button>Delete your account</button></a></p>
+  <form class='button-nav' id='logout-form' action='/users/logout' method='POST'>
+    <button id='logout'>Logout</button>
   </form>
-  <p class="text-shadow hide">
-  <a href="/users/delete-user/{{userInSession._id}}">
-    <button>Delete your account</button>
-  </a>
-  </p>
 </div>
+

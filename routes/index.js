@@ -7,6 +7,7 @@ const User = require('../models/User.model');
 /* GET home page. */
 router.get('/', async (req, res) => {
   try {
+    console.log(req.session.currentUser)
     const getMemes = await MemeApi.getAll();
     const allMemes = getMemes.data.data.memes;
     const fewMemes = allMemes.filter(meme => meme.height < 380);
