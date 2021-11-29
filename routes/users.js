@@ -43,7 +43,7 @@ router.post('/signup', async (req, res, next) => {
     const hashPwd = bcrypt.hashSync(password, salt);
     const newUser = await User.create({ username, password: hashPwd, email });
     req.session.currentUser = newUser;
-    res.redirect('/')
+    res.redirect('/');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(500).render('signup-form', { errorMessage: error.message });
@@ -60,7 +60,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-// ------ LOGIN ------ // 
+// ------ LOGIN ------ //
 router
   .route('/login', isNotLoggedIn)
   .get((req, res) => {
@@ -69,7 +69,7 @@ router
   .post(async (req, res, next) => {
     // console.log('SESSION =====> ', req.session);
     try {
-      console.log(req.body)
+      console.log(req.body);
       const { email, password } = req.body;
       if (email === '' || password === '') {
         res.render('login-form', {
@@ -105,12 +105,11 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
     const userId = req.session.currentUser._id;
     let userName = req.session.currentUser.username.charAt(0).toUpperCase();
     const findMemes = await Meme.find({ owner: userId }).populate('owner');
-    const favourites = await User.findById(userId).populate('favourites')
-    const fav = favourites.favourites
-    for(let el of fav){
-      console.log(el.url)
+    const favourites = await User.findById(userId).populate('favourites');
+    const fav = favourites.favourites;
+    for (let el of fav) {
+      console.log(el.url);
     }
-    
 
     res.render('user-profile', {
       userInSession: req.session.currentUser,
@@ -118,7 +117,7 @@ router.get('/user-profile', isLoggedIn, async (req, res) => {
       isAuthorized: true,
       userName,
       userId,
-      fav
+      fav,
     });
   } catch (error) {
     console.log(error);
@@ -129,13 +128,10 @@ router.get('/delete-user/:id', async (req, res) => {
   try {
     //get user id from url
     const userId = req.params.id;
-
-    req.session.destroy()
-
+    req.session.destroy();
     // buscar el usuario a eliminar por id y eliminarlo
     const deleteUser = await User.findByIdAndDelete(userId);
-    
-    
+
     // Buscamos todos los memes que tienen como owner el usuario eleiminado
     const memeCreatedByDeletedUser = await Meme.find({ owner: userId });
     // hacemos loop entre el array memeCreatedByDeletedUser y eliminamos cada meme por su id

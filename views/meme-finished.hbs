@@ -1,5 +1,4 @@
 <h1 class='title-memes'>CHECK OUT THE MOST POPULAR MEMES!</h1>
-
 <div class="mt-boxes-container">
   <div class="text-shadow textDesc">
   <p>
@@ -10,14 +9,12 @@
   </div>
   <div class='mt-boxes'>
 
-
   {{#each getAll}}
     <div class='mt-box'>
       <div class='{{_id}}'>
         <div class='mt-img-wrap'><img src='{{url}}' /></div>
         <div class='mt-title'>
           <span><span class="material-icons">perm_identity</span> {{owner.username}}</span>
-
           {{#if ../userid}}  
             {{#if checked}}
             <span>Fav <span data-fav-id="{{_id}}" class='material-icons red fav'> favorite</span></span> 
@@ -37,7 +34,6 @@
             <span>Likes <span class="material-icons">thumb_up</span> <span>{{likes}}</span></span>
           {{/if}}
           </div>
-
         </div>
       </div>
     {{/each}}

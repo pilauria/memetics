@@ -9,24 +9,6 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const { memoryStorage } = require('multer');
 const { update } = require('../models/User.model');
 
-
-router.get('/', async (req, res, next) => {
-  try {
-    const getMemes = await MemeApi.getAll();
-    const allMemes = getMemes.data.data.memes;
-    const isAuthorized = req.session.currentUser ? true : false;
-    if (isAuthorized === true) {
-      let userName = req.session.currentUser.username.charAt(0).toUpperCase();
-      res.render('meme-list', { allMemes, isAuthorized, userName });
-    } else {
-      res.render('meme-list', { allMemes, isAuthorized });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-
 router
   .route('/create/:id')
   .get(isLoggedIn, async (req, res) => {
@@ -48,51 +30,52 @@ router
       const API_PASSWORD = process.env.API_PASSWORD;
       // Determinar número de boxes
       let params = {};
+      if (one.box_count < 3) {
+        const text0 = 'Text #1';
+        const text1 = 'Text #2';
+        params = {
+          template_id,
+          username: API_USER,
+          password: API_PASSWORD,
+          text0,
+          text1,
+        };
+      } else {
+        params = {
+          template_id: template_id,
+          username: API_USER,
+          password: API_PASSWORD,
+        };
 
-      const text0 = "Text #1";
-      const text1 = "Text #2";
-      params = {
-        template_id,
-        username: API_USER,
-        password: API_PASSWORD,
-        text0,
-        text1,
-      };
-    } else {
-      params = {
-        template_id: template_id,
-        username: API_USER,
-        password: API_PASSWORD,
-      };
-      
-      for (let i = 1; i <= one.box_count; i++) {
-        let oneText = `Text #${i}`;
-        params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in teh url
-      }
-    }
-    MemeApi.createMeme(params)
-      .then(async el => {
-        if (el.data.success) {
-          const img = el.data.data.url;
-          let isAuthorized = true;
-          let numberOfBoxes = []
-          for (let i = 1; i <= one.box_count; i++) {
-            let oneText = `Text #${i} here!`;
-            numberOfBoxes.push(oneText)
-          }
-          if (one.box_count < 3)
-            res.render('meme-create', { one, isAuthorized, userName, img });
-          else
-            res.render('meme-create+2', {
-            one,
-            numberOfBoxes,
-            isAuthorized,
-            userName,
-            img
-          });
+        for (let i = 1; i <= one.box_count; i++) {
+          let oneText = `Text #${i}`;
+          params[`boxes[${i}][text]`] = oneText; // This becomes /?boxes="boxes[0][text]" in teh url
         }
-      })
-      .catch(err => console.log(err));
+      }
+      MemeApi.createMeme(params)
+        .then(async el => {
+          if (el.data.success) {
+            const img = el.data.data.url;
+            let isAuthorized = true;
+            let numberOfBoxes = [];
+            for (let i = 1; i <= one.box_count; i++) {
+              let oneText = `Text #${i} here!`;
+              numberOfBoxes.push(oneText);
+            }
+            if (one.box_count < 3)
+              res.render('meme-create', { one, isAuthorized, userName, img });
+            else
+              res.render('meme-create+2', {
+                one,
+                numberOfBoxes,
+                isAuthorized,
+                userName,
+                img,
+              });
+          }
+        })
+        .catch(err => console.log(err));
+
       ///////
       //const numberOfBoxes = [];
       //for (let i = 1; i <= one.box_count; i++) numberOfBoxes.push(`Box ${i}`);
@@ -106,13 +89,10 @@ router
       //    isAuthorized,
       //    userName,
       //  });
-
-    //} catch (err) {
-    //  console.log(err);
-    }
-    catch(err){
-      console.log(err)
-
+      //} catch (err) {
+      //  console.log(err);
+    } catch (err) {
+      console.log(err);
     }
   })
   .post(async (req, res) => {
@@ -279,12 +259,8 @@ router.get('/delete/:id', async (req, res) => {
   }
 });
 
-
 router.put('/community/:id', isLoggedIn, async (req, res) => {
-
   const favId = req.params.id; // id meme
-  console.log(favId);
-
 
   const userId = req.session.currentUser._id; // id usuario
   const user = await User.findById(userId);
@@ -293,19 +269,16 @@ router.put('/community/:id', isLoggedIn, async (req, res) => {
     const updateFav = await User.findByIdAndUpdate(userId, {
       $push: { favourites: favId },
     });
-
-    const response = "red"
-    res.json(response)
+    const response = 'red';
+    res.json(response);
     //res.redirect('/memes/community');
-
   } else {
     const deleted = await User.findByIdAndUpdate(
       { _id: userId },
       { $pullAll: { favourites: [favId] } }
     );
-
-    const response = "blank"
-    res.json(response)
+    const response = 'blank';
+    res.json(response);
     //res.redirect('/memes/community');
   }
 });
@@ -333,7 +306,6 @@ router.put('/liked/:id', async (req, res) => {
   );
   res.json(memeLiked);
 });
-
 
 router.get('/community', async (req, res) => {
   const getAll = await Meme.find().populate('owner').lean();
@@ -355,33 +327,6 @@ router.get('/community', async (req, res) => {
     res.render('meme-finished', { isAuthorized, userid, getAll, userName });
   } else res.render('meme-finished', { getAll });
 });
-
-
-
-router.put('/liked/:id', async (req, res) => {
-  const user = req.session.currentUser._id;
-  const memeId = req.params.id;
-  const meme = await Meme.findById(memeId);
-  let valueLikes = meme.likes;
-  if (!meme.likedByUser.includes(user)) {
-    const liked = await Meme.findByIdAndUpdate(memeId, {
-      $push: { likedByUser: user },
-    });
-    valueLikes += 1;
-  } else {
-    const notLiked = await Meme.findByIdAndUpdate(memeId, {
-      $pull: { likedByUser: user },
-    });
-    valueLikes -= 1;
-  }
-  const memeLiked = await Meme.findByIdAndUpdate(
-    memeId,
-    { likes: valueLikes },
-    { new: true }
-  );
-  res.json(memeLiked);
-});
-
 
 router.get('/', async (req, res, next) => {
   try {
