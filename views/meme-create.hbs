@@ -3,17 +3,21 @@
   <div class='mt-img-wrap'>
     <img src='{{img}}' />
   </div>
-  <form action='/memes/create/{{one.id}}' method='POST'>
-    <div class='meme-text'>
-      <div class='meme-text-size textForm'>
-        <label for='text0'>Insert text 1</label>
-        <input type='text' name='text0' />
+
+  <div class="formCreateUpdate">
+    <form action='/memes/create/{{one.id}}' method='POST'>
+      <div class='meme-text'>
+        <div class='meme-text-size textForm'>
+          <label for='text0'>Insert text 1</label>
+          <input type='text' name='text0' />
+        </div>
+        <div class='meme-text-size textForm'>
+          <label for='text1'>Insert text 2</label>
+          <input type='text' name='text1' />
+        </div>
       </div>
-      <div class='meme-text-size textForm'>
-        <label for='text1'>Insert text 2</label>
-        <input type='text' name='text1' />
-      </div>
-    </div>
-    <button class='logout' type='submit'>Create Meme!</button>
-  </form>
+      <button type='submit'>Create Meme!</button>
+    </form>
+  </div>
+
 </div>
