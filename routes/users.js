@@ -60,7 +60,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-// ------ LOGIN ------ //
+// ------ LOGIN ------ // 
 router
   .route('/login', isNotLoggedIn)
   .get((req, res) => {
@@ -69,6 +69,7 @@ router
   .post(async (req, res, next) => {
     // console.log('SESSION =====> ', req.session);
     try {
+      console.log(req.body)
       const { email, password } = req.body;
       if (email === '' || password === '') {
         res.render('login-form', {

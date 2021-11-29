@@ -126,6 +126,9 @@ h1 {
 .red {
   color: red;
 }
+.blank {
+  color: transparent;
+}
 .blue {
   color: blue
 }

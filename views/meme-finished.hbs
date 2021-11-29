@@ -17,12 +17,10 @@
           <span><span class="material-icons">perm_identity</span> {{owner.username}}</span>
           {{#if ../userid}}  
             {{#if checked}}
-            <span>Fav<a href='/memes/community/{{_id}}'><span class='material-icons red fav'> favorite</span></a></span> 
+            <span>Fav <span data-fav-id="{{_id}}" class='material-icons red fav'> favorite</span></span> 
             {{else}}
               <span>Fav
-                <a
-                  href='/memes/community/{{_id}}'
-                ><span class='material-icons fav'>favorite_border</span> </a></span>
+                <span data-fav-id="{{_id}}" class='material-icons fav blank'> favorite</span></span>
             {{/if}}
           {{else}}
               <span>Fav
